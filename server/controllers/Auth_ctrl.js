@@ -45,4 +45,10 @@ module.exports = {
     res.sendStatus(200)
   },
 
+  logout: async(req, res) => {
+    console.log(`logout was fired`)
+    req.session.destroy()
+    res.sendStatus(200)
+  }
+
 }
