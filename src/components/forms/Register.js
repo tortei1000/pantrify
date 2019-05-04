@@ -29,7 +29,7 @@ class LoginForm extends Component {
             const res = await axios.post('/auth/login', { loginUsername, loginPassword })
             this.props.updateUsername(loginUsername)
             this.props.updateUserId(res.data.user_id)
-            this.props.history.push('/info')
+            this.props.history.push('/home')
         } catch (err) {
             this.setState({ loginUsername: '', loginPassword: '', loginError: true })
         }

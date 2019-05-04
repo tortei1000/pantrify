@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom'
 class Login extends Component {
     componentDidMount() {
         if (this.props.username) {
-            this.props.history.push('/info')
+            this.props.history.push('/home')
         }
     }
 

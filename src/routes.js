@@ -14,5 +14,6 @@ export default (
       </Login>
     )} />
     <Route path='/register' component={NewUser} />
+    <Route path='/home' component={Home} />
   </Switch>
 )

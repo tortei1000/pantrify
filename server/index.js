@@ -9,7 +9,7 @@ const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env
 
 app.use(express.json())
 
-app.use(session({
+app.use(session({  //how can I make sessions last through a refresh
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
