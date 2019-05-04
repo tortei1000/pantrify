@@ -4,6 +4,7 @@ const app = express()
 const massive = require('massive')
 const session = require('express-session')
 const Auth_ctrl = require('./controllers/Auth_ctrl')
+const Recipes_ctrl = require('./controllers/Recipes_ctrl')
 
 const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env
 
@@ -29,3 +30,5 @@ massive(CONNECTION_STRING).then((database)=>{
 app.post('/auth/login', Auth_ctrl.login)
 app.post('/auth/register', Auth_ctrl.register)
 app.get('/auth/logout', Auth_ctrl.logout)
+app.get('/api/recipes', Recipes_ctrl.get)
+app.post('/api/recipes', Recipes_ctrl.createRecipe) // have to check on why this is not creating it right
