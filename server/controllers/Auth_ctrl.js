@@ -31,9 +31,6 @@ module.exports = {
       let user = await db.login({username})
       session.user = user[0]
       const authenticated = bcrypt.compareSync(req.body.loginPassword, user[0].password)
-      console.log(authenticated)
-      console.log(bcrypt.hashSync(req.body.loginPassword, 10))
-      console.log(user[0].password)
       if(authenticated){
         res.status(200).send({authenticated, user_id: user[0].login_id})
       } else {
