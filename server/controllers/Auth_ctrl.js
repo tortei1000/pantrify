@@ -5,14 +5,14 @@ module.exports = {
     const db = req.app.get('db')
     const { username, password } = req.body
     const { session } = req
-    let nameTaken = await db.check_username({email})
+    let nameTaken = await db.check_username({username})
     nameTaken = +nameTaken[0].count
     if(nameTaken !== 0) {
       return res.sendStatus(409)
     }
     const salt = bcrypt.genSaltSync(10)
     const hash = bcrypt.hashSync(password, salt)
-    const user_id = await db.registerUser({
+    const user_id = await db.register_user({
       username, 
       hash
     })
