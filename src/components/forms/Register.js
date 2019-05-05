@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import { updateUserId, updateUsername } from '../../redux/auth_reducer'
 import axios from 'axios'
 
-class LoginForm extends Component {
+class Register extends Component {
     constructor() {
         super()
         this.state = {
@@ -22,11 +22,14 @@ class LoginForm extends Component {
         })
     }
 
-    handleLoginFormSubmit = async (e) => {
+    handleLoginFormSubmit = async (e) => { //this is not really login in my user
         e.preventDefault()
         const { loginUsername, loginPassword } = this.state
+        
         try {
+            console.log(`am i here?`)
             const res = await axios.post('/auth/login', { loginUsername, loginPassword })
+            console.log(`am i here too?`)
             this.props.updateUsername(loginUsername)
             this.props.updateUserId(res.data.user_id)
             this.props.history.push('/home')
@@ -67,4 +70,4 @@ const mapDispatchToProps = {
   updateUsername
 }
 
-export default connect(null, mapDispatchToProps)(withRouter(LoginForm))
+export default connect(null, mapDispatchToProps)(withRouter(Register))

@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
-import { Link, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import axios from 'axios';
 import Recipes from './Recipes'
 
 class Home extends Component {

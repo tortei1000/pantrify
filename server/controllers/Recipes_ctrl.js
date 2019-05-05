@@ -9,7 +9,8 @@ module.exports = {
   },
 
   createRecipe : (req, res) => {
-    console.log(req.session.user)
+    const {session} = req
+    console.log(session.user)
     const db = req.app.get('db')
     const { title, instructions} = req.body
     
