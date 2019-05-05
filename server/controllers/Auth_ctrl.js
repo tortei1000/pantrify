@@ -34,7 +34,7 @@ module.exports = {
       return res.status(401).send(`username or password incorrect`)
     }
    
-    isAuthenticated = bcrypt.compareSync(password, user.password) //this line is the issue
+    isAuthenticated = bcrypt.compareSync(password, user.password) 
     if(!isAuthenticated){
       return res.status(401).send(`username or password incorrect`)
     } 

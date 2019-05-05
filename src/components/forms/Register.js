@@ -22,7 +22,7 @@ class Register extends Component {
         })
     }
 
-    handleLoginFormSubmit = async (e) => { //this is not really login in my user
+    handleLoginFormSubmit = async (e) => { 
         e.preventDefault()
         const { loginUsername, loginPassword } = this.state
         

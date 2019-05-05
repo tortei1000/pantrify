@@ -10,12 +10,13 @@ export default class Recipe extends Component {
       <div >
         <div >
           <div ><img className="house_image" src={item.img}/></div>
-          <li key={index} style={{ listStyle: 'none' }}>{item.title}</li>
-          <li key={index} style={{ listStyle: 'none' }}>{item.instructions}</li>
+          <li key={index} style={{ listStyle: 'none' }}>Recipe Title: {item.title}</li>
+          <li key={index} style={{ listStyle: 'none' }}>Instruction: {item.instructions}</li>
+          <li key={index} style={{ listStyle: 'none' }}>Ingredients: {item.name}</li>
          
         </div>
         <div >
-          <button onClick={()=>this.props.deleteHouse(item)}></button>
+          <button onClick={()=>this.props.deleteRecipe(item)}></button>
         </div>
       </div>
     )

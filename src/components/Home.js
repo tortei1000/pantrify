@@ -7,14 +7,26 @@ class Home extends Component {
   
 
 
-  render(){
-    if(this.props.username){
+  render(){  //<Recipes /> is not rendering correctly because my sql file is not selecting a user id 
+    
       return(
       <div>
-        <Recipes/>
+        {this.props.username ? (
+          <div>
+            <h1>
+              My Recipes
+            </h1>
+            <Recipes  /> 
+          </div>
+        ) : (
+          <div >
+            User not Logged in
+          </div>
+        )}
+        
       </div>
-    )} 
-      return <div>you are not logged in</div>
+      )
+      
     
 
   }

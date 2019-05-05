@@ -1,9 +1,11 @@
 module.exports = {
   get: (req, res) => {
     console.log(`get recipes fired`)
-    const db = req.app.get('db')
+    const db = req.app.get('db') 
+    const {id} = req.session.user
+    console.log(req.session.user)
 
-    db.display_recipes().then((recipe)=>{
+    db.display_recipes(id).then((recipe)=>{ //how can I get user_id here? so I can do my display.sql
       res.status(200).send(recipe)
     }).catch(err => console.log("error", err))
   },

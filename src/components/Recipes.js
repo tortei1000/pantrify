@@ -24,7 +24,7 @@ export default class Recipes extends Component {
 
     })
   }
-  deleteHouse = (item) => {
+  deleteRecipe = (item) => {
     axios.delete(`/api/recipes/${item.id}`).then(res => {
 
     })
