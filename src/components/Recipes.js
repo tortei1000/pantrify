@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import axios from 'axios'
 import Recipe from './Recipe'
-import Navbar from './Navbar';
+
 
 
 export default class Recipes extends Component {
@@ -31,7 +31,9 @@ export default class Recipes extends Component {
   }
   deleteRecipe = (item) => {
     axios.delete(`/api/recipes/${item.id}`).then(res => { //this is not working
-
+      this.setState({
+        recipes:res.data
+      })
     })
     this.getRecipes()
   }

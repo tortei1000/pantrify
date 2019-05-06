@@ -25,7 +25,7 @@ export default class Recipe extends Component {
       <div >
         <div >
           <div ><img className="house_image"
-            src={`https://s3-us-west-1.amazonaws.com/pantrify-images/hero/photo-1556040221-a1efce785fcc.jpeg${S3KEY}`}
+            src={`https://images.unsplash.com/photo-1459682687441-7761439a709d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2010&q=80`}
             alt='broken' width='300px' /></div>
           <li key={index} style={{ listStyle: 'none' }}>Recipe Title: {item.title}</li>
           <li key={index} style={{ listStyle: 'none' }}>Instruction: {item.instructions}</li>

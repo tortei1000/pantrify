@@ -48,10 +48,11 @@ module.exports = {
   delete: (req, res) => {
     console.log(`delete recipe was fired`)
     const db = req.app.get('db')
+    console.log("look at me", req.params)
     const { id } = req.params
-
-    db.delete_house(id).then(() => res.sendStatus(200))
-    console.log(`delete recipe fired`)
+    const {id:user_id} = req.session.user
+    db.delete_recipe([id, user_id]).then((recipe) => res.status(200).send(recipe))
+    
 
   },
 
