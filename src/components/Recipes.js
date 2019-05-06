@@ -52,7 +52,7 @@ export default class Recipes extends Component {
 
   render() {
     let { recipes } = this.state
-    console.log(recipes, "houses in the start of render")
+    
 
     return (
       <div>

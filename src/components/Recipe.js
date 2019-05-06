@@ -20,7 +20,7 @@ export default class Recipe extends Component {
 
   render() {
     const { item, index } = this.props
-    console.log(this.props)
+    
     return (
       <div >
         <div >
