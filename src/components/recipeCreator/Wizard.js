@@ -12,7 +12,7 @@ export default class Wizard extends Component {
       <div>
         Create a new recipe!
         <Link to="/"><button>cancel</button></Link>
-        <Link to="/wizard/step1"><button>next</button></Link>
+        
         <Switch>
           <Route component={Step1} exact path="/wizard/step1" />
           <Route component={Step2} exact path="/wizard/step2" />

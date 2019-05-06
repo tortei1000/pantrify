@@ -10,7 +10,7 @@ class Step2 extends Component {
     super()
     this.state = {
       name: '',
-      quantity:null,
+      quantity: null,
       unit: ''
 
     }
@@ -53,22 +53,22 @@ class Step2 extends Component {
         Wizard
 
         <div>
-          <input name="name" placeholder="name" onChange={this.handleChange} />
-          <input name="quantity" placeholder="quantity" onChange={this.handleChange} />
-          <input name="unit" placeholder="unit" onChange={this.handleChange} />
+          <input name="name" placeholder="name" value={this.state.name} onChange={this.handleChange} />
+          <input name="quantity" placeholder="quantity" value={this.state.quantity} onChange={this.handleChange} />
+          <input name="unit" placeholder="unit" value={this.state.unit} onChange={this.handleChange} />
 
         </div>
         <div>
-            <button onClick={this.addIngredientsToState}>add ingredients</button>
+          <button onClick={this.addIngredientsToState}>add ingredients</button>
           <Link to="/home"><button onClick={this.createRecipe}>Done</button></Link>
-          {this.props.ingredients.map((ingredient)=>{
+          {this.props.ingredients.map((ingredient) => {
             return (
-            <>
-              <p>{ingredient.name}</p>
-              <p>{ingredient.quantity}</p>
-              <p>{ingredient.unit}</p>
-              
-            </>)
+              <>
+                <p>{ingredient.name}</p>
+                <p>{ingredient.quantity}</p>
+                <p>{ingredient.unit}</p>
+
+              </>)
           })}
         </div>
       </div>
