@@ -3,7 +3,7 @@ import axios from 'axios';
 require('dotenv').config()
 
 const { S3KEY } = process.env
-export default class Recipe extends Component {
+export default class Recipe extends Component { //need to make a route to an individual recipe card
   constructor() {
     super()
     this.state = {

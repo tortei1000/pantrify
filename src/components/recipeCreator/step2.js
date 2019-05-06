@@ -10,7 +10,7 @@ class Step2 extends Component {
     super()
     this.state = {
       name: '',
-      quantity: null,
+      quantity: null, //can i reset state here after user input? or is that messing me up?
       unit: ''
 
     }
