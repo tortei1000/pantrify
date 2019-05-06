@@ -8,43 +8,34 @@ module.exports = {
       let { title } = req.query
       res.send(recipes.filter(recipe => recipe.title.includes(title)))
     } else {
-      db.display_recipes([id]).then((recipe) => {
+      db.display_recipes([id]).then((recipe) => { 
         res.status(200).send(recipe)
       }).catch(err => console.log("error", err))
     }
   },
 
-  getIngredients: (req, res) => {
+  getIngredients: (req,res) => {
     console.log(`ingredients fired`)
     const db = req.app.get('db')
-    const { id } = req.params
-    db.get_ingredients([id]).then((ingredient) => {
+    const {id} = req.params
+    db.get_ingredients([id]).then((ingredient)=> {
       res.status(200).send(ingredient)
     }).catch(err => console.log('error', err))
   },
 
   createRecipe: (req, res) => {  // create, delete and update not getting fired upon button press
     console.log(`create recipe was fired`)
-    console.log(req.body)
+    const { session } = req
+    console.log(session.user)
     const db = req.app.get('db')
-    const { user_id, title, instructions } = req.body
+    const { title, instructions } = req.body
 
 
-    db.create_recipe([user_id, title, instructions]).then(() => {
+    db.create_recipe([title, instructions]).then(() => {
       res.sendStatus(200)
     })
-    
+    console.log(`create recipe fired`)
 
-  },
-
-  addIngredients: (req, res) => {
-    console.log(`add ingredients was fired`)
-    const db = req.app.get('db')
-    const {recipe_id, name, quantity, unit} = req.body
-
-    db.add_ingredients([recipe_id, name, quantity, unit]).then(()=>{
-      res.sendStatus(200)
-    })
   },
 
   delete: (req, res) => {

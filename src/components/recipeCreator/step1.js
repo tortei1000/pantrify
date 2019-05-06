@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios';
+import {createRecipeTitle} from '../../redux/auth_reducer'
 
 class Step1 extends Component {
   constructor() {
@@ -20,7 +21,7 @@ class Step1 extends Component {
   addRecipe = () => {
     const {title, instructions} = this.state
     const {user_id} = this.props
-    axios.post('/api/recipes', {user_id, title, instructions})
+    this.props.createRecipeTitle({user_id, title, instructions})
     
 }
 
@@ -54,11 +55,14 @@ class Step1 extends Component {
   }
 }
 
+const mapDispatchToProps = {
+  addRecipe
+}
 
 const mapStateToProps = (reduxState) => {
   const { username, user_id } = reduxState
   return { username, user_id }
 }
 
-export default connect(mapStateToProps)(Step1)
+export default connect(mapStateToProps, mapDispatchToProps)(Step1)
 
