@@ -28,10 +28,17 @@ module.exports = {
     const { session } = req
     console.log(session.user)
     const db = req.app.get('db')
-    const { title, instructions } = req.body
+    const {title, instructions, ingredients} = req.body
+    const {id} = req.session.user
 
 
-    db.create_recipe([title, instructions]).then(() => {
+    db.create_recipe([id, title, instructions]).then((id_array) => {
+      console.log(ingredients)
+      ingredients.forEach(ingredient => {
+        const {name, quantity, unit} = ingredient
+        const myId = id_array[0].id
+        db.add_ingredients([myId, name, quantity, unit])
+      })
       res.sendStatus(200)
     })
     console.log(`create recipe fired`)

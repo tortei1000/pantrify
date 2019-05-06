@@ -30,6 +30,7 @@ massive(CONNECTION_STRING).then((database)=>{
 app.post('/auth/login', Auth_ctrl.login)
 app.post('/auth/register', Auth_ctrl.register)
 app.get('/auth/logout', Auth_ctrl.logout)
+app.get('/auth/users', Auth_ctrl.getUsers)
 app.get('/api/recipes', Recipes_ctrl.get)
 app.get('/api/ingredients/:id', Recipes_ctrl.getIngredients)
 app.post('/api/recipes', Recipes_ctrl.createRecipe)

@@ -56,7 +56,7 @@ class Step1 extends Component {
 }
 
 const mapDispatchToProps = {
-  addRecipe
+  createRecipeTitle
 }
 
 const mapStateToProps = (reduxState) => {

@@ -9,12 +9,16 @@ export default class Recipes extends Component {
   constructor() {
     super()
     this.state = {
-      recipes: []
+      recipes: [],
+      user: ''
     }
   }
 
   componentDidMount() {
     this.getRecipes()
+    axios.get('/auth/users').then(res=>{
+      this.setState({user:res.data})
+    })
   }
   getRecipes = () => {
     axios.get('/api/recipes').then((res) => { //this is getting the right data

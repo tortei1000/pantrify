@@ -5,7 +5,8 @@ const initialState = {
   recipes: [],
   title: '',
   instructions: '',
-  ingredients: { name: '', quantity: null, unit: '', is_in_pantry: false, is_in_shopping_list: false }  
+  ingredients: [],
+  recipe_id : null  
 }
 
 const UPDATE_USER_ID = "UPDATE_USER_ID"
@@ -14,7 +15,14 @@ const UPDATE_USER_DETAILS = "UPDATE_USER_DETAILS"
 const LOGOUT = 'LOGOUT'
 const CREATE_RECIPE = 'CREATE_RECIPE'
 const CREATE_RECIPE_TITLE = 'CREATE_RECIPE_TITLE'
+const ADD_INGREDIENTS = 'ADD_INGREDIENTS'
 
+export function addIngredients(obj){
+  return {
+    type: ADD_INGREDIENTS,
+    payload: obj
+  }
+}
 
 export function updateUserId(id) {
   return {
@@ -66,9 +74,11 @@ export default function reducer(state = initialState, action){
       return { ...state, authenticated } 
     
     case CREATE_RECIPE_TITLE:
-    const {title, instructions} = payload
-      return {...state, title, instructions}
-
+    const {user_id, title, instructions} = payload
+      return {...state, user_id, title, instructions}
+    case ADD_INGREDIENTS:
+    const {name, quantity, unit} = payload
+      return {...state, ingredients:[...state.ingredients, {name, quantity, unit}]}
     case LOGOUT:
       return {...state, user_id: null, username:"", authenticated:false}
     
