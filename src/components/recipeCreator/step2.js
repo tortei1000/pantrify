@@ -10,20 +10,22 @@ class Step2 extends Component {
     super()
     this.state = {
       name: '',
-      quantity: '',
+      quantity:null,
       unit: ''
 
     }
   }
-
-
-
 
   addIngredientsToState = () => {
     const { name, quantity, unit } = this.state
     const { title, instructions, ingredients } = this.props
     console.log(ingredients)
     this.props.addIngredients({ name, quantity, unit })
+    this.setState({
+      name: "",
+      quantity: null,
+      unit: ""
+    })
 
   }
 
@@ -59,6 +61,15 @@ class Step2 extends Component {
         <div>
             <button onClick={this.addIngredientsToState}>add ingredients</button>
           <Link to="/home"><button onClick={this.createRecipe}>Done</button></Link>
+          {this.props.ingredients.map((ingredient)=>{
+            return (
+            <>
+              <p>{ingredient.name}</p>
+              <p>{ingredient.quantity}</p>
+              <p>{ingredient.unit}</p>
+              
+            </>)
+          })}
         </div>
       </div>
     )
