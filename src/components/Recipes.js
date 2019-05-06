@@ -58,6 +58,7 @@ export default class Recipes extends Component {
       <div>
         <Link to="/wizard/step1"><button className="dash_button">Create new recipe</button></Link>
         {recipes[0] ? recipes.map((item, index) => {
+          
           return (
             <div >
               <Recipe item={item} index={index} deleteRecipe={this.deleteRecipe} />

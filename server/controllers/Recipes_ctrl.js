@@ -8,10 +8,19 @@ module.exports = {
       let { title } = req.query
       res.send(recipes.filter(recipe => recipe.title.includes(title)))
     } else {
-      db.display_recipes(id).then((recipe) => { //how can I get user_id here? so I can do my display.sql
+      db.display_recipes([id]).then((recipe) => { 
         res.status(200).send(recipe)
       }).catch(err => console.log("error", err))
     }
+  },
+
+  getIngredients: (req,res) => {
+    console.log(`ingredients fired`)
+    const db = req.app.get('db')
+    const {id} = req.params
+    db.get_ingredients([id]).then((ingredient)=> {
+      res.status(200).send(ingredient)
+    }).catch(err => console.log('error', err))
   },
 
   createRecipe: (req, res) => {  // create, delete and update not getting fired upon button press
