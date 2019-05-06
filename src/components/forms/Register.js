@@ -27,11 +27,12 @@ class Register extends Component {
         const { loginUsername, loginPassword } = this.state
         
         try {
-            console.log(`am i here?`)
+            
             const res = await axios.post('/auth/login', { loginUsername, loginPassword })
-            console.log(`am i here too?`)
+            
             this.props.updateUsername(loginUsername)
-            this.props.updateUserId(res.data.user_id)
+            this.props.updateUserId(res.data.id)
+            
             this.props.history.push('/home')
         } catch (err) {
             this.setState({ loginUsername: '', loginPassword: '', loginError: true })

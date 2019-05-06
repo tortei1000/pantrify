@@ -33,3 +33,4 @@ app.get('/auth/logout', Auth_ctrl.logout)
 app.get('/api/recipes', Recipes_ctrl.get)
 app.post('/api/recipes', Recipes_ctrl.createRecipe) // have to check on why this is not creating it right
 app.delete('/api/delete', Recipes_ctrl.delete)
+app.put('/api/recipes/:id', Recipes_ctrl.update)

@@ -1,17 +1,18 @@
-import React, {Component} from 'react'
+import React from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Recipes from './Recipes'
 
-class Home extends Component {
+
+const Home = (props) => {
+  const {username} = props
   
 
-
-  render(){  //<Recipes /> is not rendering correctly because my sql file is not selecting a user id 
+   //<Recipes /> is not rendering correctly because my sql file is not selecting a user id 
     
       return(
       <div>
-        {this.props.username ? (
+        {username ? (
           <div>
             <h1>
               My Recipes
@@ -27,10 +28,10 @@ class Home extends Component {
       </div>
       )
       
-    
+    }
 
-  }
-}
+  
+
 
 const mapStateToProps = (reduxState) => {
   const { username } = reduxState

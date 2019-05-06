@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import axios from 'axios'
 import Recipe from './Recipe'
+import Navbar from './Navbar';
 
 
 export default class Recipes extends Component {
@@ -25,10 +26,25 @@ export default class Recipes extends Component {
     })
   }
   deleteRecipe = (item) => {
-    axios.delete(`/api/recipes/${item.id}`).then(res => {
+    axios.delete(`/api/recipes/${item.id}`).then(res => { //this is not working
 
     })
     this.getRecipes()
+  }
+
+  updateRecipe = (item) => {
+    axios.put(`/api/recipes/${item.id}`).then(res => {
+      this.setState({
+        recipes: res.data
+      })
+    })
+  }
+
+  createRecipe() {
+
+    axios.post('/api/houses', {}).then(() => { //not sure how to make this go
+      this.props.history.push(`/`)
+    })
   }
 
   
@@ -45,7 +61,7 @@ export default class Recipes extends Component {
           return (
             <div >
               <Recipe item={item} index={index} deleteRecipe={this.deleteRecipe} />
-
+              
             </div>
           )
         }) : null
