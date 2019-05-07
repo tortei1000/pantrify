@@ -25,7 +25,7 @@ class Navbar extends Component {
                         </li>
                     </ul>
                 ) : (
-                        <li>
+                        <li style={{listStyle:'none'}}>
                             <Search />
                         </li>)}
 

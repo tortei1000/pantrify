@@ -8,17 +8,17 @@ module.exports = {
       let { title } = req.query
       res.send(recipes.filter(recipe => recipe.title.includes(title)))
     } else {
-      db.display_recipes([id]).then((recipe) => { 
+      db.display_recipes([id]).then((recipe) => {
         res.status(200).send(recipe)
       }).catch(err => console.log("error", err))
     }
   },
 
-  getIngredients: (req,res) => {
+  getIngredients: (req, res) => {
     console.log(`ingredients fired`)
     const db = req.app.get('db')
-    const {id} = req.params
-    db.get_ingredients([id]).then((ingredient)=> {
+    const { id } = req.params
+    db.get_ingredients([id]).then((ingredient) => {
       res.status(200).send(ingredient)
     }).catch(err => console.log('error', err))
   },
@@ -28,14 +28,14 @@ module.exports = {
     const { session } = req
     console.log(session.user)
     const db = req.app.get('db')
-    const {title, instructions, ingredients} = req.body
-    const {id} = req.session.user
+    const { title, instructions, ingredients } = req.body
+    const { id } = req.session.user
 
 
     db.create_recipe([id, title, instructions]).then((id_array) => {
       console.log(ingredients)
       ingredients.forEach(ingredient => {
-        const {name, quantity, unit} = ingredient
+        const { name, quantity, unit } = ingredient
         const myId = id_array[0].id
         db.add_ingredients([myId, name, quantity, unit])
       })
@@ -50,21 +50,31 @@ module.exports = {
     const db = req.app.get('db')
     console.log("look at me", req.params)
     const { id } = req.params
-    const {id:user_id} = req.session.user
+    const { id: user_id } = req.session.user
     db.delete_recipe([id, user_id]).then((recipe) => res.status(200).send(recipe))
-    
+
 
   },
 
   update: (req, res) => {
-    console.log(`update recipe fired`) //how to to an edit
+    console.log(`update recipe fired`) 
     const db = req.app.get('db')
     const { id } = req.params;
-    let userData = req.body;
-    userData.id = id
-    db.update_recipe([title, instructions]).then(() => {
+    console.log('look at memmmmmm', id)
+    const { title, instructions, ingredients } = req.body
+
+    db.delete_ingredients(id).then(() => {
+      db.update_recipe([title, instructions, id]).then(() => {
+        ingredients.forEach(ingredient => {
+          const { name, quantity, unit } = ingredient
+          console.log("this here is the other id", id)
+          db.add_ingredients([id,name, quantity, unit])
+        })
+      
+      })
       res.sendStatus(200)
     })
+
   },
 
   search: (req, res) => {

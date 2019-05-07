@@ -62,7 +62,7 @@ class Recipes extends Component {
         <Recipe item={this.state.selectedId} index={1}
           deleteRecipe={this.deleteRecipe} /> :
         <div>
-          <Link to="/wizard/step1"><button className="dash_button">Create new recipe</button></Link>
+          <Link to="/wizard/step1"><button >Create new recipe</button></Link>
           {recipes[0] ? recipes.map((item, index) => {
 
             return (

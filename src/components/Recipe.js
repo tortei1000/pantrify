@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 require('dotenv').config()
 
 
@@ -44,7 +45,8 @@ export default class Recipe extends Component {
         </div>
         <div >
           <button onClick={() => { this.props.deleteRecipe(item) }}>Delete</button>
-          <button onClick={() => { this.props.updateRecipe(item) }}>Update</button>
+          <Link to={`/editrecipe/edit1/${item.id}`}><button>Edit Recipe</button></Link>
+          
         </div>
       </div>
     )
