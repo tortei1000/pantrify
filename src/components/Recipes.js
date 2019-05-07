@@ -2,10 +2,12 @@ import React, { Component } from 'react'
 import { Link } from "react-router-dom"
 import axios from 'axios'
 import Recipe from './Recipe'
+import { connect } from 'react-redux'
+import {updateUserId, updateUsername} from '../redux/auth_reducer'
 
 
 
-export default class Recipes extends Component {
+class Recipes extends Component {
   constructor() {
     super()
     this.state = {
@@ -14,15 +16,17 @@ export default class Recipes extends Component {
     }
   }
 
-  componentDidMount() {
+  componentDidMount() {  //use action creators, connect to redux, use res.data as payload
     this.getRecipes()
     axios.get('/auth/users').then(res=>{
-      this.setState({user:res.data})
+      console.log(res.data)
+      // this.props.updateUserId(res.id)
+      // this.props.updateUsername(res.data.username)
     })
   }
   getRecipes = () => {
-    axios.get('/api/recipes').then((res) => { //this is getting the right data
-
+    console.log(`get recipes is running`)
+    axios.get('/api/recipes').then((res) => { 
       this.setState({
         recipes: res.data
       })
@@ -30,7 +34,7 @@ export default class Recipes extends Component {
     })
   }
   deleteRecipe = (item) => {
-    axios.delete(`/api/recipes/${item.id}`).then(res => { //this is not working
+    axios.delete(`/api/recipes/${item.id}`).then(res => { 
       this.setState({
         recipes:res.data
       })
@@ -69,3 +73,13 @@ export default class Recipes extends Component {
     )
   }
 }
+const mapDispatchToProps = {
+  updateUserId, updateUsername
+}
+
+const mapStateToProps = (reduxState) => {
+
+  return reduxState
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Recipes)

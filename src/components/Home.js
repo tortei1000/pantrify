@@ -1,15 +1,31 @@
-import React from 'react'
+import React, {Component} from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Recipes from './Recipes'
+import axios from 'axios';
 
 
-const Home = (props) => {
+class Home extends Component {
+  constructor(){
+    super()
+    this.state = {
+      userIn : false
+    }
+  }
+  componentDidMount(){
+    axios.get('/auth/users').then((res)=>{
+      console.log(`this is res`, res)
+      if(res.data[0].username){this.setState({userIn:true})}
+    })
+  }
   
-  const {username} = props
+  render(){
+  
+
+  
       return(
       <div>
-        {username ? (
+        {this.state.userIn ? (
           <div>
             <h1>
               My Recipes
@@ -27,7 +43,7 @@ const Home = (props) => {
       
     }
 
-  
+  }
 
 
 const mapStateToProps = (reduxState) => {

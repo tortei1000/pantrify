@@ -57,7 +57,7 @@ module.exports = {
   },
 
   update: (req, res) => {
-    console.log(`update recipe fired`)
+    console.log(`update recipe fired`) //how to to an edit
     const db = req.app.get('db')
     const { id } = req.params;
     let userData = req.body;

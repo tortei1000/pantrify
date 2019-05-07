@@ -18,8 +18,7 @@ class Step2 extends Component {
 
   addIngredientsToState = () => {
     const { name, quantity, unit } = this.state
-    const { ingredients } = this.props
-    console.log(ingredients)
+        
     this.props.addIngredients({ name, quantity, unit })
     this.setState({
       name: "",

@@ -11,7 +11,7 @@ export default class Search extends Component {
      
     };
 
-  this.searchRecipe = this.searchRecipe.bind(this)  //verify how search should work
+  this.searchRecipe = this.searchRecipe.bind(this)  //verify how search should work, should I use redux
   }
   
   

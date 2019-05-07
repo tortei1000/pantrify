@@ -21,7 +21,7 @@ export default class Recipe extends Component { //need to make a route to an ind
   render() {
     const { item, index } = this.props
     
-    return ( //want to make the a tag take you to the idividual recipe
+    return ( //want to make the tag take you to the idividual recipe
       <div >
         <div style={{border:'solid'}} >
           
