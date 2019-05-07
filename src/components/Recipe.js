@@ -1,12 +1,18 @@
 import React, { Component } from 'react'
 import axios from 'axios';
-import { Link } from 'react-router-dom'
-require('dotenv').config()
+import { Link, withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 
-export default class Recipe extends Component { 
+
+
+class Recipe extends Component { 
   constructor() {
-    
+    super()
+    this.state = {
+      recipes: [],
+      ingredients: []
+    }
   }
   componentDidMount() {
     axios.get(`/api/ingredients/${this.props.item.id}`).then(res => {
@@ -43,10 +49,16 @@ export default class Recipe extends Component {
         <div >
           <button onClick={() => { this.props.deleteRecipe(item) }}>Delete</button>
           <Link to={`/editrecipe/edit1/${item.id}`}><button>Edit Recipe</button></Link>
-          <Link to={`/home`}><button>cancel</button></Link>
+          <button onClick={()=>this.props.history.goBack()}>cancel</button>
           
         </div>
       </div>
     )
   }
 }
+const mapStateToProps = (reduxState) => {
+  const { username } = reduxState
+  return { username }
+}
+
+export default connect(mapStateToProps)(withRouter(Recipe))

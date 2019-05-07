@@ -2,12 +2,17 @@ module.exports = {
   get: (req, res) => {
     console.log(`get recipes fired`)
     const db = req.app.get('db')
-    const { id } = req.session.user
+    let { id } = req.session.user
+    id = String(id)
+    console.log(id, 'here is id')
     if (req.query.title) {
-      console.log("search was fired")
-      let { title } = req.query
-      res.send(recipes.filter(recipe => recipe.title.includes(title)))
+      let searchTerm = `%${req.query.title}%`
+      console.log('here is req', searchTerm)
+      db.search([id, searchTerm]).then((recipe)=>{
+        res.status(200).send(recipe)
+      })
     } else {
+      
       db.display_recipes([id]).then((recipe) => {
         res.status(200).send(recipe)
       }).catch(err => console.log("error", err))
@@ -23,7 +28,7 @@ module.exports = {
     }).catch(err => console.log('error', err))
   },
 
-  createRecipe: (req, res) => {  // create, delete and update not getting fired upon button press
+  createRecipe: (req, res) => {  
     console.log(`create recipe was fired`)
     const { session } = req
     console.log(session.user)

@@ -11,22 +11,26 @@ export default class Search extends Component {
      
     };
 
-  this.searchRecipe = this.searchRecipe.bind(this)  //verify how search should work, should I use redux
+  
   }
   
   
-  searchRecipe = (text) => {
+  // searchRecipe = () => {
+  //   console.log(this.state.filterText, 'look ')
+  //   axios.get(`/api/recipes/?title=${this.state.filterText}`).then(res => {
+      
+  //     this.setState({
+        
+  //       recipes: res.data
+  //     })
+  //   }).catch(err => console.log("error", err))
 
-    axios.get(`/api/recipes/?title=${text}`).then(res => {
+  // }
 
-      this.setState({
-        recipes: res.data
-      })
-    }).catch(err => console.log("error", err))
-
-  }
+  
   
   handleChange(e){
+    console.log(e.target.value)
     this.setState({filterText:e.target.value})
     
    }
@@ -40,7 +44,7 @@ export default class Search extends Component {
         <div >
           <input onChange={(e)=>this.handleChange(e)} placeholder="Search Your Recipes" />
           
-          <button onClick={this.searchRecipe}>Search</button>
+          <button onClick={()=>this.props.searchRecipe(this.state.filterText)}>Search</button>
           
         </div>
         

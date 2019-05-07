@@ -5,6 +5,7 @@ import Recipe from './Recipe'
 import { connect } from 'react-redux'
 import { updateUserId, updateUsername } from '../redux/auth_reducer'
 import RecipeCard from './RecipeCard'
+import Search from './Search';
 
 
 
@@ -32,6 +33,20 @@ class Recipes extends Component {
 
     })
   }
+
+  searchRecipe = (text) => {
+    console.log(text, 'look ')
+    axios.get(`/api/recipes/?title=${text}`).then(res => {
+      console.log(res.data)
+      
+      this.setState({
+
+        recipes: res.data
+      })
+    }).catch(err => console.log("error", err))
+
+  }
+
   deleteRecipe = (item) => {
     axios.delete(`/api/recipes/${item.id}`).then(res => {
       this.setState({
@@ -62,6 +77,7 @@ class Recipes extends Component {
         <Recipe item={this.state.selectedId} index={1}
           deleteRecipe={this.deleteRecipe} /> :
         <div>
+          <Search searchRecipe={this.searchRecipe}/>
           <Link to="/wizard/step1"><button >Create new recipe</button></Link>
           {recipes[0] ? recipes.map((item, index) => {
 

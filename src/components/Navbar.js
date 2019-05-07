@@ -24,10 +24,7 @@ class Navbar extends Component {
                             <Link to='/register'>Register</Link>
                         </li>
                     </ul>
-                ) : (
-                        <li style={{listStyle:'none'}}>
-                            <Search />
-                        </li>)}
+                ) : (null)}
 
                 {username && <div>Welcome, {username}  <button onClick={() => {
                     this.props.logout()
