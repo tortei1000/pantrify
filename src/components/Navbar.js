@@ -31,7 +31,7 @@ class Navbar extends Component {
 
                 {username && <div>Welcome, {username}  <button onClick={() => {
                     this.props.logout()
-                    axios.get('/auth/logout').then(()=>{this.props.history.push('/')})
+                    axios.get('/auth/logout').then(()=>{this.props.history.push('/home')})
                     
 
                 }}>logout</button></div>}

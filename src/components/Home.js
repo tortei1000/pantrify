@@ -10,15 +10,14 @@ class Home extends Component {
   constructor(){
     super()
     this.state = {
-      userIn : false
+      
     }
   }
   componentDidMount(){
     axios.get('/auth/users').then((res)=>{
-      console.log(`this is res`, res)
-      if(res.data.username){this.setState({userIn:true})}
+         
       this.props.updateUsername(res.data.username)
-    })
+    }).catch((err)=>{console.log(err)})
   }
   
   render(){
@@ -27,7 +26,7 @@ class Home extends Component {
   
       return(
       <div>
-        {this.state.userIn ? (
+        {this.props.username ? (
           <div>
             <h1>
               My Recipes
@@ -36,7 +35,7 @@ class Home extends Component {
           </div>
         ) : (
           <div >
-            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" width="1200px"/>
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" width="1200px" alt="error"/>
           </div>
         )}
         

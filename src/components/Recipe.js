@@ -6,10 +6,7 @@ require('dotenv').config()
 
 export default class Recipe extends Component { 
   constructor() {
-    super()
-    this.state = {
-      ingredients: ['ait']
-    }
+    
   }
   componentDidMount() {
     axios.get(`/api/ingredients/${this.props.item.id}`).then(res => {
@@ -46,6 +43,7 @@ export default class Recipe extends Component {
         <div >
           <button onClick={() => { this.props.deleteRecipe(item) }}>Delete</button>
           <Link to={`/editrecipe/edit1/${item.id}`}><button>Edit Recipe</button></Link>
+          <Link to={`/home`}><button>cancel</button></Link>
           
         </div>
       </div>

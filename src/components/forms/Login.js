@@ -13,7 +13,7 @@ class Login extends Component {
         return( 
         <div>
             {this.props.children}
-            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" width="1200px"/>
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" width="1200px" alt="error"/>
         </div>
         )
     }
