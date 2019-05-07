@@ -35,9 +35,8 @@ class Recipes extends Component {
   }
 
   searchRecipe = (text) => {
-    console.log(text, 'look ')
+    
     axios.get(`/api/recipes/?title=${text}`).then(res => {
-      console.log(res.data)
       
       this.setState({
 
