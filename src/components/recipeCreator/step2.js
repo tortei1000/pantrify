@@ -18,7 +18,7 @@ class Step2 extends Component {
 
   addIngredientsToState = () => {
     const { name, quantity, unit } = this.state
-    const { title, instructions, ingredients } = this.props
+    const { ingredients } = this.props
     console.log(ingredients)
     this.props.addIngredients({ name, quantity, unit })
     this.setState({
@@ -31,8 +31,8 @@ class Step2 extends Component {
 
   createRecipe = () => {
     const { title, instructions, ingredients } = this.props
-    axios.post('/api/recipes', { title, instructions, ingredients }).then(() => {
-
+    axios.post('/api/recipes', { title, instructions, ingredients }).then(() => { //after this id called I need to refresh the recipes
+      
     })
   }
 

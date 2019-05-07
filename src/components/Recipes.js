@@ -46,20 +46,10 @@ export default class Recipes extends Component {
     })
   }
 
-  createRecipe() {
-
-    axios.post('/api/houses', {}).then(() => { //not sure how to make this go
-      this.props.history.push(`/`)
-    })
-  }
-
-  
-
-
   render() {
-    let { recipes } = this.state
+    let { recipes } = this.state //I want to have a recipe card, it needs the info from this map, how do I pass it? do I make it 
+    //child or can I make it a grandchild
     
-
     return (
       <div>
         <Link to="/wizard/step1"><button className="dash_button">Create new recipe</button></Link>

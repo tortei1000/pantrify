@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import axios from 'axios';
 import {createRecipeTitle} from '../../redux/auth_reducer'
 
 class Step1 extends Component {

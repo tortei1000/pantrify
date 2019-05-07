@@ -11,7 +11,7 @@ export default class Search extends Component {
      
     };
 
-  this.searchRecipe = this.searchRecipe.bind(this)  
+  this.searchRecipe = this.searchRecipe.bind(this)  //verify how search should work
   }
   
   
@@ -33,12 +33,12 @@ export default class Search extends Component {
   render() {
     
     return (
-      <section className="Search__parent">
+      <section >
 
-        <div className="Search__content">
+        <div >
           <input onChange={(e)=>this.handleChange(e)} placeholder="Search Your Recipes" />
           
-          <button className="searchbutton"  onClick={this.searchRecipe}>Search</button>
+          <button onClick={this.searchRecipe}>Search</button>
           
         </div>
         

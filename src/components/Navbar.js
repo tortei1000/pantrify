@@ -1,20 +1,20 @@
 import React from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import axios from 'axios';
 import Search from './Search'
 import { logout } from '../redux/auth_reducer'
 
-const Navbar = (props) => {
+const Navbar = (props) => { //how can I condiatially render login ?
     const { username } = props
     return (
 
         <nav>
             <span>PANTRIFY</span>
             <ul>
-                <li>
+                {/* <li>
                     <Link to='/'>Home</Link>
-                </li>
+                </li> */}
+                
                 <li>
                     <Link to='/login'>Login</Link>
                 </li>
@@ -22,8 +22,7 @@ const Navbar = (props) => {
                     <Link to='/register'>Register</Link>
                 </li>
                 <li>
-                    {/* <Search searchRecipe={this.props.searchRecipe} 
-                    recipes ={this.props.recipes}/> */}
+                    <Search />
                 </li>
             </ul>
             {username && <div>Welcome, {username}  <button onClick={() => {
