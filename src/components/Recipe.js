@@ -3,7 +3,7 @@ import axios from 'axios';
 require('dotenv').config()
 
 
-export default class Recipe extends Component { //need to make a route to an individual recipe card
+export default class Recipe extends Component { 
   constructor() {
     super()
     this.state = {
@@ -21,7 +21,7 @@ export default class Recipe extends Component { //need to make a route to an ind
   render() {
     const { item, index } = this.props
     
-    return ( //want to make the tag take you to the idividual recipe
+    return ( 
       <div >
         <div style={{border:'solid'}} >
           

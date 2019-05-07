@@ -1,38 +1,45 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Search from './Search'
 import { logout } from '../redux/auth_reducer'
+import axios from 'axios'
 
-const Navbar = (props) => { //how can I condiatially render login ?
-    const { username } = props
-    return (
+class Navbar extends Component { 
+    
+    render() {
+        const { username } = this.props
+        return (
 
-        <nav>
-            <span>PANTRIFY</span>
-            <ul>
-                {/* <li>
-                    <Link to='/'>Home</Link>
-                </li> */}
-                
-                <li>
-                    <Link to='/login'>Login</Link>
-                </li>
-                <li>
-                    <Link to='/register'>Register</Link>
-                </li>
-                <li>
-                    <Search />
-                </li>
-            </ul>
-            {username && <div>Welcome, {username}  <button onClick={() => {
-                props.logout()
-                props.history.push('/')
-            }}>logout</button></div>}
+            <nav>
+                <span>PANTRIFY</span>
 
-        </nav>
-    )
-} 
+
+                {!this.props.username ? (
+                    <ul>
+                        <li>
+                            <Link to='/login'>Login</Link>
+                        </li>
+                        <li>
+                            <Link to='/register'>Register</Link>
+                        </li>
+                    </ul>
+                ) : (
+                        <li>
+                            <Search />
+                        </li>)}
+
+                {username && <div>Welcome, {username}  <button onClick={() => {
+                    this.props.logout()
+                    axios.get('/auth/logout').then(()=>{this.props.history.push('/')})
+                    
+
+                }}>logout</button></div>}
+
+            </nav>
+        )
+    }
+}
 const mapDispatchToProps = {
     logout
 }

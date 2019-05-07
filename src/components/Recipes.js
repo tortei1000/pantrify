@@ -3,7 +3,8 @@ import { Link } from "react-router-dom"
 import axios from 'axios'
 import Recipe from './Recipe'
 import { connect } from 'react-redux'
-import {updateUserId, updateUsername} from '../redux/auth_reducer'
+import { updateUserId, updateUsername } from '../redux/auth_reducer'
+import RecipeCard from './RecipeCard'
 
 
 
@@ -12,21 +13,19 @@ class Recipes extends Component {
     super()
     this.state = {
       recipes: [],
-      user: ''
+      user: '',
+      recipeSelected: false,
+      selectedId: null
     }
   }
 
-  componentDidMount() {  //use action creators, connect to redux, use res.data as payload
+  componentDidMount() {
     this.getRecipes()
-    axios.get('/auth/users').then(res=>{
-      console.log(res.data)
-      // this.props.updateUserId(res.id)
-      // this.props.updateUsername(res.data.username)
-    })
+
   }
   getRecipes = () => {
     console.log(`get recipes is running`)
-    axios.get('/api/recipes').then((res) => { 
+    axios.get('/api/recipes').then((res) => {
       this.setState({
         recipes: res.data
       })
@@ -34,12 +33,15 @@ class Recipes extends Component {
     })
   }
   deleteRecipe = (item) => {
-    axios.delete(`/api/recipes/${item.id}`).then(res => { 
+    axios.delete(`/api/recipes/${item.id}`).then(res => {
       this.setState({
-        recipes:res.data
+        recipes: res.data
       })
     })
     this.getRecipes()
+    this.setState({
+      recipeSelected: false
+    })
   }
 
   updateRecipe = (item) => {
@@ -50,26 +52,37 @@ class Recipes extends Component {
     })
   }
 
+
+
   render() {
-    let { recipes } = this.state //I want to have a recipe card, it needs the info from this map, how do I pass it? do I make it 
-    //child or can I make it a grandchild
-    
+    let { recipes } = this.state
+
     return (
-      <div>
-        <Link to="/wizard/step1"><button className="dash_button">Create new recipe</button></Link>
-        {recipes[0] ? recipes.map((item, index) => {
-          
-          return (
-            <div >
-              <Recipe item={item} index={index} deleteRecipe={this.deleteRecipe} />
-              
-            </div>
-          )
-        }) : null
-        }
+      <>{this.state.recipeSelected ?
+        <Recipe item={this.state.selectedId} index={1}
+          deleteRecipe={this.deleteRecipe} /> :
+        <div>
+          <Link to="/wizard/step1"><button className="dash_button">Create new recipe</button></Link>
+          {recipes[0] ? recipes.map((item, index) => {
+
+            return (
+              <div key={index} onClick={() => {
+                this.setState({
+                  recipeSelected: true,
+                  selectedId: item
+                })
+              }}>
+                <RecipeCard item={item} index={index} />
+
+              </div>
+            )
+          }) : null
+          }
 
 
-      </div>
+        </div>}
+
+      </>
     )
   }
 }

@@ -30,6 +30,8 @@ export default class Search extends Component {
     this.setState({filterText:e.target.value})
     
    }
+  
+  
   render() {
     
     return (

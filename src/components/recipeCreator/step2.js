@@ -10,7 +10,7 @@ class Step2 extends Component {
     super()
     this.state = {
       name: '',
-      quantity: null, //can i reset state here after user input? or is that messing me up?
+      quantity: null, 
       unit: ''
 
     }
@@ -30,7 +30,7 @@ class Step2 extends Component {
 
   createRecipe = () => {
     const { title, instructions, ingredients } = this.props
-    axios.post('/api/recipes', { title, instructions, ingredients }).then(() => { //after this id called I need to refresh the recipes
+    axios.post('/api/recipes', { title, instructions, ingredients }).then(() => { 
       
     })
   }

@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Recipes from './Recipes'
 import axios from 'axios';
+import {updateUsername} from "../redux/auth_reducer"
 
 
 class Home extends Component {
@@ -15,7 +16,8 @@ class Home extends Component {
   componentDidMount(){
     axios.get('/auth/users').then((res)=>{
       console.log(`this is res`, res)
-      if(res.data[0].username){this.setState({userIn:true})}
+      if(res.data.username){this.setState({userIn:true})}
+      this.props.updateUsername(res.data.username)
     })
   }
   
@@ -44,11 +46,13 @@ class Home extends Component {
     }
 
   }
-
+const mapDispatchToProps = {
+  updateUsername
+}
 
 const mapStateToProps = (reduxState) => {
   const { username } = reduxState
   return { username }
 }
 
-export default connect(mapStateToProps)(withRouter(Home))
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Home))
