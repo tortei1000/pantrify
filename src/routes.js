@@ -7,6 +7,7 @@ import NewUser from './components/forms/NewUser';
 import Wizard from './components/recipeCreator/Wizard';
 import EditRecipe from './components/edit_recipe/EditRecipe';
 import ShoppingList from './components/ShoppingList';
+import Pantry from './components/Pantry'
 
 export default (
   <Switch>
@@ -21,5 +22,6 @@ export default (
     <Route path='/wizard' component={Wizard} />
     <Route path='/editrecipe/:id' component={EditRecipe} />
     <Route path='/shoppinglist' component={ShoppingList} />
+    <Route path='/pantry' component={Pantry} />
   </Switch>
 )

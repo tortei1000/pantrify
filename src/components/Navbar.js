@@ -27,6 +27,7 @@ class Navbar extends Component {
                     <>
                     <Link to='/home'>my recipes</Link>
                     <Link to='/shoppinglist'>shopping list</Link>
+                    <Link to='/pantry'>Pantry</Link>
                     </>
                 )}
 

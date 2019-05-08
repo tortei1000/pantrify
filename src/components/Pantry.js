@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import axios from 'axios';
 import { updateUsername } from "../redux/auth_reducer"
 
-class ShoppingList extends Component {
+class Pantry extends Component {
 
   constructor() {  
     super()
@@ -17,11 +17,11 @@ class ShoppingList extends Component {
     axios.get('/auth/users').then((res) => {
       this.props.updateUsername(res.data.username)
     })
-    this.getIngredients()
+    this.getPantry()
 
   }
-  getIngredients=()=>{
-    axios.get('/api/ingredients').then((result) => {
+  getPantry=()=>{
+    axios.get('/api/pantry').then((result) => {
       this.setState({ ingredients: result.data })
     })
   }
@@ -30,14 +30,14 @@ class ShoppingList extends Component {
     axios.put(`/api/shoppinglist/${id}` ).then((res)=>{
       console.log(res.status)
     })
-    this.getIngredients()
+    this.getPantry()
   }
 
-  addToPantry = (id) => {
-    axios.put(`/api/addtopantry/${id}`).then((res)=>{
+  removeFromPantry =(id)=>{
+    axios.put(`/api/removepantry/${id}` ).then((res)=>{
       console.log(res.status)
     })
-    this.getIngredients()
+    this.getPantry()
   }
 
   render() {
@@ -48,14 +48,14 @@ class ShoppingList extends Component {
           <li>{ingredient.name}</li>
           <li>{ingredient.quantity}</li>
           <li>{ingredient.unit}</li>
-          <button onClick={()=>{this.addToPantry(ingredient.id)}}>add to pantry</button>
-          <button onClick={()=>{this.removeFromList(ingredient.id)}}>remove from list</button>
+          <button onClick={()=>{this.removeFromPantry(ingredient.id)}}>remove item</button>
+          
         </>
       )
     })
     return (
       <div>
-        <h1>Shopping List</h1>
+        <h1>My Pantry</h1>
         {list}
         
       </div>
@@ -73,4 +73,4 @@ const mapStateToProps = (reduxState) => {
   return { username }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(withRouter(ShoppingList))
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(Pantry))
