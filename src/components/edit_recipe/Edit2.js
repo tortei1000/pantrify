@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import axios from 'axios';
-import { addIngredients } from "../../redux/auth_reducer"
+import { addIngredients, refreshState } from "../../redux/auth_reducer"
 
 class Edit2 extends Component {
   constructor() {
@@ -30,6 +30,7 @@ class Edit2 extends Component {
   editRecipe = () => {
     const { title, instructions, ingredients } = this.props
     axios.put(`/api/recipes/${this.props.match.params.id}`, { title, instructions, ingredients }).then(() => { 
+      this.props.refreshState()  //why is this not working?
       this.props.history.push('/home')
     })
   }

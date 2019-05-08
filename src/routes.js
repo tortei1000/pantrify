@@ -6,6 +6,7 @@ import Login from './components/forms/Login'
 import NewUser from './components/forms/NewUser';
 import Wizard from './components/recipeCreator/Wizard';
 import EditRecipe from './components/edit_recipe/EditRecipe';
+import ShoppingList from './components/ShoppingList';
 
 export default (
   <Switch>
@@ -19,5 +20,6 @@ export default (
     <Route path='/home' component={Home} />
     <Route path='/wizard' component={Wizard} />
     <Route path='/editrecipe' component={EditRecipe} />
+    <Route path='/shoppinglist' component={ShoppingList} />
   </Switch>
 )

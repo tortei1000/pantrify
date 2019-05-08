@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import Search from './Search'
 import { logout } from '../redux/auth_reducer'
 import axios from 'axios'
 
@@ -24,7 +23,12 @@ class Navbar extends Component {
                             <Link to='/register'>Register</Link>
                         </li>
                     </ul>
-                ) : (null)}
+                ) : (
+                    <>
+                    <Link to='/home'>my recipes</Link>
+                    <Link to='/shoppinglist'>shopping list</Link>
+                    </>
+                )}
 
                 {username && <div>Welcome, {username}  <button onClick={() => {
                     this.props.logout()

@@ -6,7 +6,7 @@ const initialState = {
   title: '',
   instructions: '',
   ingredients: [],
-  recipe_id : null  
+  recipe_id: null
 }
 
 const UPDATE_USER_ID = "UPDATE_USER_ID"
@@ -15,8 +15,16 @@ const UPDATE_USER_DETAILS = "UPDATE_USER_DETAILS"
 const LOGOUT = 'LOGOUT'
 const CREATE_RECIPE_TITLE = 'CREATE_RECIPE_TITLE'
 const ADD_INGREDIENTS = 'ADD_INGREDIENTS'
+const REFRESH_STATE = 'REFRESH_STATE'
 
-export function addIngredients(obj){
+
+export function refreshState() {
+  return {
+    type: REFRESH_STATE,
+
+  }
+}
+export function addIngredients(obj) {
   return {
     type: ADD_INGREDIENTS,
     payload: obj
@@ -53,37 +61,41 @@ export function updateUserDetails(obj) {
   }
 }
 
-export function logout(){
+export function logout() {
   return {
     type: LOGOUT
   }
 }
 
-export default function reducer(state = initialState, action){
+export default function reducer(state = initialState, action) {
   const { type, payload } = action
-  switch(type){
-    case UPDATE_USER_ID: 
+  switch (type) {
+    case UPDATE_USER_ID:
       return { ...state, user_id: payload, authenticated: true }
 
     case UPDATE_USERNAME:
       return { ...state, username: payload }
 
     case UPDATE_USER_DETAILS:
-    const { authenticated } = payload
-      return { ...state, authenticated } 
-    
+      const { authenticated } = payload
+      return { ...state, authenticated }
+
     case CREATE_RECIPE_TITLE:
-    const {user_id, title, instructions} = payload
-      return {...state, user_id, title, instructions}
+      const { user_id, title, instructions } = payload
+      return { ...state, user_id, title, instructions }
     case ADD_INGREDIENTS:
-    const {name, quantity, unit} = payload
-      return {...state, ingredients:[...state.ingredients, {name, quantity, unit}]}
+      const { name, quantity, unit } = payload
+      return { ...state, ingredients: [...state.ingredients, { name, quantity, unit }] }
     case LOGOUT:
-      return {...state, user_id: null, username:"", authenticated:false}
-    
+      return { ...state, user_id: null, username: "", authenticated: false }
+    case REFRESH_STATE:
+      return {
+        ...state, title: '', instructions: '',
+        ingredients: { name: '', quantity: null, unit: '' }
+      }
 
 
-    default: 
+    default:
       return state
   }
 }

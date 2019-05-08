@@ -86,5 +86,14 @@ module.exports = {
     console.log(`search was fired`)
     const db = req.app.get('db')
 
+  },
+
+  getShopIngredients: (req, res) => {
+    console.log('get shop ingredients fired')
+    const db = req.app.get('db')
+    const {id} = req.session.user
+    db.get_shopping_list(id).then((ingredient)=>{
+      res.status(200).send(ingredient)
+    })
   }
 }
