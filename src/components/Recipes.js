@@ -22,8 +22,8 @@ class Recipes extends Component {
 
   componentDidMount() {
     this.getRecipes()
-
   }
+  
   getRecipes = () => {
     console.log(`get recipes is running`)
     axios.get('/api/recipes').then((res) => {

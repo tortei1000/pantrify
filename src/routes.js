@@ -8,6 +8,7 @@ import Wizard from './components/recipeCreator/Wizard';
 import EditRecipe from './components/edit_recipe/EditRecipe';
 import ShoppingList from './components/ShoppingList';
 import Pantry from './components/Pantry'
+import Calendar from './components/Calendar'
 
 export default (
   <Switch>
@@ -23,5 +24,6 @@ export default (
     <Route path='/editrecipe/:id' component={EditRecipe} />
     <Route path='/shoppinglist' component={ShoppingList} />
     <Route path='/pantry' component={Pantry} />
+    <Route path='/calendar' component={Calendar} />
   </Switch>
 )
