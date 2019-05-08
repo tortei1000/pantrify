@@ -6,6 +6,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {updateUsername} from "../redux/auth_reducer"
 import axios from 'axios'
+const isSameDay = require('date-fns/is_same_day')
 
 class Calendar extends React.Component {
   state = {
@@ -52,6 +53,7 @@ class Calendar extends React.Component {
       days.push(
         <div className="col col-center" key={i}>
           {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
+          
         </div>
       );
     }
@@ -72,12 +74,17 @@ class Calendar extends React.Component {
     let days = [];
     let day = startDate;
     let formattedDate = "";
+    
 
     while (day <= endDate) {
       for (let i = 0; i < 7; i++) {
         formattedDate = dateFns.format(day, dateFormat);
         const cloneDay = day;
+        let filter = this.state.meals.filter((day)=>{ console.log(day.day, cloneDay)
+          return isSameDay(new Date(day.day),(new Date(cloneDay)))})
+        console.log("hellllllllllloooooooo",filter)
         days.push(
+          
           <div
             className={`col cell ${
               !dateFns.isSameMonth(day, monthStart)
@@ -88,8 +95,10 @@ class Calendar extends React.Component {
             onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
 
           >
+            {(filter.length > 0)? (<p>{filter[0].value.title}</p>):null}
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>
+            
           </div>
         );
         day = dateFns.addDays(day, 1);
@@ -105,7 +114,8 @@ class Calendar extends React.Component {
       <div className="body">
         {(this.state.isClicked) ? (<Mealer selectedRecipe={this.selectedRecipe} 
         day={this.state.selectedDate}
-        onDateClick={this.onDateClick}/>
+        onDateClick={this.onDateClick}
+        />
         ):rows}
         
       </div>
