@@ -19,7 +19,7 @@ export default (
     <Route path='/register' component={NewUser} />
     <Route path='/home' component={Home} />
     <Route path='/wizard' component={Wizard} />
-    <Route path='/editrecipe' component={EditRecipe} />
+    <Route path='/editrecipe/:id' component={EditRecipe} />
     <Route path='/shoppinglist' component={ShoppingList} />
   </Switch>
 )

@@ -22,6 +22,12 @@ class Recipe extends Component {
     })
   }
 
+  sendToList =()=>{
+    axios.put(`/api/ingredients/${this.props.item.id}` ).then((res)=>{
+      console.log(res.status)
+    })
+  }
+
   render() {
     const { item, index } = this.props
     
@@ -50,6 +56,7 @@ class Recipe extends Component {
           <button onClick={() => { this.props.deleteRecipe(item) }}>Delete</button>
           <Link to={`/editrecipe/edit1/${item.id}`}><button>Edit Recipe</button></Link>
           <button onClick={()=>this.props.history.goBack()}>cancel</button>
+          <button onClick={this.sendToList}>Add to List</button>
           
         </div>
       </div>

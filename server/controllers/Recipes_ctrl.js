@@ -95,5 +95,23 @@ module.exports = {
     db.get_shopping_list(id).then((ingredient)=>{
       res.status(200).send(ingredient)
     })
+  },
+
+  sendToList : (req, res) => {
+    console.log('send to list fired')
+    const db = req.app.get('db')
+    const {id} = req.params
+    db.add_to_list(id).then(()=>{
+      res.sendStatus(200)
+    })
+  },
+
+  removeFromList : (req, res) => {
+    console.log('remove from list was fired')
+    const db = req.app.get('db')
+    const {id} = req.params
+    db.remove_from_list(id).then(()=>{
+      res.sendStatus(200)
+    })
   }
 }

@@ -16,11 +16,21 @@ class ShoppingList extends Component {
   componentDidMount() {
     axios.get('/auth/users').then((res) => {
       this.props.updateUsername(res.data.username)
-      axios.get('/api/ingredients').then((result) => {
-        this.setState({ ingredients: result.data })
-      })
     })
+    this.getIngredients()
 
+  }
+  getIngredients=()=>{
+    axios.get('/api/ingredients').then((result) => {
+      this.setState({ ingredients: result.data })
+    })
+  }
+
+  removeFromList =(id)=>{
+    axios.put(`/api/shoppinglist/${id}` ).then((res)=>{
+      console.log(res.status)
+    })
+    this.getIngredients()
   }
 
   render() {
@@ -31,6 +41,7 @@ class ShoppingList extends Component {
           <li>{ingredient.name}</li>
           <li>{ingredient.quantity}</li>
           <li>{ingredient.unit}</li>
+          <button onClick={()=>{this.removeFromList(ingredient.id)}}>remove from list</button>
         </>
       )
     })
@@ -38,6 +49,7 @@ class ShoppingList extends Component {
       <div>
         <h1>Shopping List</h1>
         {list}
+        
       </div>
     )
   }
