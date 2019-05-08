@@ -76,7 +76,7 @@ class Edit2 extends Component {
 }
 
 const mapDispatchToProps = {
-  addIngredients
+  addIngredients, refreshState
 }
 
 const mapStateToProps = (reduxState) => {

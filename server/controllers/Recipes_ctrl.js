@@ -90,6 +90,7 @@ module.exports = {
 
   getShopIngredients: (req, res) => {
     console.log('get shop ingredients fired')
+    console.log(req.session.user)
     const db = req.app.get('db')
     const { id } = req.session.user
     db.get_shopping_list(id).then((ingredient) => {
@@ -129,7 +130,7 @@ module.exports = {
     const db = req.app.get('db')
     const { id } = req.params
     db.add_to_pantry(id).then(() =>
-      res, sendStatus(200))
+      res.sendStatus(200))
   },
 
   removeFromPantry: (req, res) => {

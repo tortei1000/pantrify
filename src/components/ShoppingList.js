@@ -37,7 +37,8 @@ class ShoppingList extends Component {
     axios.put(`/api/addtopantry/${id}`).then((res)=>{
       console.log(res.status)
     })
-    this.getIngredients()
+    this.removeFromList(id)
+    this.getIngredients(id)
   }
 
   render() {
