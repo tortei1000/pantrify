@@ -4,7 +4,7 @@ import './calendar.css'
 import Mealer from "./Mealer";
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
-import {updateUsername} from "../redux/auth_reducer"
+import { updateUsername } from "../redux/auth_reducer"
 import axios from 'axios'
 const isSameDay = require('date-fns/is_same_day')
 
@@ -13,14 +13,17 @@ class Calendar extends React.Component {
     currentMonth: new Date(),
     selectedDate: new Date(),
     meals: [],
-    isClicked: false
+    isClicked: false,
+    isInPantry: false
   };
 
-  componentDidMount(){
-    axios.get('/auth/users').then((res)=>{
-         
+  componentDidMount() {
+    axios.get('/auth/users').then((res) => {
+
       this.props.updateUsername(res.data.username)
-    }).catch((err)=>{console.log(err)})
+    }).catch((err) => { console.log(err) })
+    this.getCalendarMeals()
+    
   }
 
   renderHeader() {
@@ -53,7 +56,7 @@ class Calendar extends React.Component {
       days.push(
         <div className="col col-center" key={i}>
           {dateFns.format(dateFns.addDays(startDate, i), dateFormat)}
-          
+
         </div>
       );
     }
@@ -62,6 +65,7 @@ class Calendar extends React.Component {
   }
 
   renderCells() {
+    console.log("hehehehhehehheheheh", this.state.meals)
     const { currentMonth, selectedDate } = this.state;
     const monthStart = dateFns.startOfMonth(currentMonth);
     const monthEnd = dateFns.endOfMonth(monthStart);
@@ -74,17 +78,19 @@ class Calendar extends React.Component {
     let days = [];
     let day = startDate;
     let formattedDate = "";
-    
+
 
     while (day <= endDate) {
       for (let i = 0; i < 7; i++) {
         formattedDate = dateFns.format(day, dateFormat);
         const cloneDay = day;
-        let filter = this.state.meals.filter((day)=>{ console.log(day.day, cloneDay)
-          return isSameDay(new Date(day.day),(new Date(cloneDay)))})
-        console.log("hellllllllllloooooooo",filter)
-        days.push(
+        let filter = this.state.meals.filter((day) => {
           
+          return isSameDay(new Date(day.meal_day), (new Date(cloneDay)))
+        })
+          console.log("guess here is it", filter)
+        days.push(
+
           <div
             className={`col cell ${
               !dateFns.isSameMonth(day, monthStart)
@@ -95,10 +101,11 @@ class Calendar extends React.Component {
             onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
 
           >
-            {(filter.length > 0)? (<p>{filter[0].value.title}</p>):null}
+            {(filter.length > 0) ? (<p style={this.state.isInPantry ? { color: "green" } : { color: "red" }}>
+              {filter[0].recipe}</p>) : null}
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>
-            
+
           </div>
         );
         day = dateFns.addDays(day, 1);
@@ -112,17 +119,29 @@ class Calendar extends React.Component {
     }
     return (
       <div className="body">
-        {(this.state.isClicked) ? (<Mealer selectedRecipe={this.selectedRecipe} 
-        day={this.state.selectedDate}
-        onDateClick={this.onDateClick}
+        {(this.state.isClicked) ? (<Mealer selectedRecipe={this.selectedRecipe}
+          day={this.state.selectedDate}
+          onDateClick={this.onDateClick}
         />
-        ):rows}
-        
+        ) : rows}
+
       </div>
     )
   }
 
-  
+  saveToDb = (planMeal) => {
+    axios.post('/api/calendar', planMeal).then(()=>{
+      console.log("meals are saved on db")
+    })
+  }
+
+  getCalendarMeals = () => {
+    axios.get('/api/calendar').then((res)=>{
+      this.setState({
+        meals: res.data
+      })
+    })
+  }
 
   onDateClick = day => {
     this.setState({
@@ -131,11 +150,13 @@ class Calendar extends React.Component {
     });
   };
 
-  selectedRecipe =(day, value)=> {
-    let planMeal = {day, value}
+  selectedRecipe = (meal_day, value) => {
+    const {title:recipe} = value
+    let planMeal = { meal_day, recipe}
     this.setState({
       meals: [...this.state.meals, planMeal]
     })
+    this.saveToDb(planMeal)
   }
 
   nextMonth = () => {
