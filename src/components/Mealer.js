@@ -36,17 +36,31 @@ class Mealer extends Component {
     const {allRecipes} = this.state
     const {day} = this.props
     console.log(allRecipes)
-    let renderRecipes = allRecipes.map((recipe, index)=>{
-      return(
-        <>
-        <p onClick={()=>this.props.selectedRecipe(day, recipe)} key={index}>{recipe.title}</p>
-        </>
-      )
-    })
+    
+    //   let renderRecipes = allRecipes.map((recipe, index)=>{
+      
+    //   return(
+        
+    //     <option>onClick={()=>this.props.selectedRecipe(day, recipe)} key={index}>{recipe.title}</option>
+        
+    //   )
+      
+    // })
     return(
       <>
       <div style={{fontSize:'30px'}}>{this.props.day.toUTCString()}</div>
-      <div>{renderRecipes}</div>
+      
+        {allRecipes.map((recipe, index)=>{
+      
+      return(
+        
+        <button onClick={()=>this.props.selectedRecipe(day, recipe)} key={index}>{recipe.title}</button>
+        
+      )
+      
+    })}
+      
+      {/* <div>{renderRecipes}</div> */}
       <button onClick={()=>this.props.onDateClick()}>go back</button>
       </>
     )

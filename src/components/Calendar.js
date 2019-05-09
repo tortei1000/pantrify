@@ -140,8 +140,10 @@ class Calendar extends React.Component {
 
 
   saveToDb = (planMeal) => {
-    axios.post('/api/calendar', planMeal).then(() => {
-      console.log("meals are saved on db")
+    axios.post('/api/calendar', planMeal).then((res) => {
+      this.setState({
+        meals: [...this.state.meals, res.data]
+      })
     })
   }
 
@@ -153,12 +155,12 @@ class Calendar extends React.Component {
     })
   }
 
-  removeRecipe = (id) => {  
-    console.log(`this is before the axios`)
+  removeRecipe = (id) => {
+    console.log(`this is before the axios`, id)
     axios.delete(`/api/calendar/${id}`).then(() => {
       console.log(`meal removed from calendar`)
+      this.getCalendarMeals()
     })
-    this.getCalendarMeals()
   }
 
   onDateClick = day => {
@@ -171,10 +173,14 @@ class Calendar extends React.Component {
   selectedRecipe = (meal_day, value) => {
     const { title: recipe } = value
     let planMeal = { meal_day, recipe }
-    this.setState({
-      meals: [...this.state.meals, planMeal]
-    })
     this.saveToDb(planMeal)
+    // this.setState({
+    //   meals: [...this.state.meals, planMeal]
+    // })
+
+    this.setState({
+      isClicked: !this.state.isClicked
+    })
 
 
   }

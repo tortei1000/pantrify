@@ -5,8 +5,8 @@ module.exports = {
     const { meal_day, recipe } = req.body
     const db = req.app.get('db')
 
-    db.new_calendar_entry([id, meal_day, recipe]).then(() => {
-      res.sendStatus(200)
+    db.new_calendar_entry([id, meal_day, recipe]).then((result) => {
+      res.status(200).send(result[0])
     })
   },
 
