@@ -1,11 +1,11 @@
 module.exports = {
   newEntry : (req, res) => {
-    console.log(`new entry was fired`)
+    console.log(`new entry was fired`, req.body)
     const {id} = req.session.user
-    const {day, value} = req.body
+    const {meal_day, recipe} = req.body
     const db = req.app.get('db')
     
-    db.new_calendar_entry([id, day, value.title]).then(()=>{
+    db.new_calendar_entry([id, meal_day, recipe]).then(()=>{
       res.sendStatus(200)
     })
   },
