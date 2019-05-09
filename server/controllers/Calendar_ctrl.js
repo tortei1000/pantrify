@@ -25,8 +25,18 @@ module.exports = {
     const db  = req.app.get('db')
     const { title } = req.params
     db.search_calendar(title).then((recipe) => {
-      console.log(`recipe`)
+      console.log(recipe)
       res.status(200).send(recipe)
     })
-  }
+  },
+  delete : (req, res) => {
+    console.log(`calendar delete fired`)
+    const {id} = req.params
+    const db = req.app.get('db')
+
+    db.calendar_delete(id).then((meals)=>{
+      res.status(200).send(meals)
+    })
+  },
+
 }

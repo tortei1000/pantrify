@@ -17,7 +17,7 @@ class Calendar extends React.Component {
     meals: [],
     isClicked: false,
     isInPantry: false,
-    mappedArray:[]
+
   };
 
   componentDidMount() {
@@ -25,7 +25,7 @@ class Calendar extends React.Component {
       this.props.updateUsername(res.data.username)
     }).catch((err) => { console.log(err) })
     this.getCalendarMeals()
-        
+
   }
 
   renderHeader() {
@@ -67,7 +67,7 @@ class Calendar extends React.Component {
   }
 
   renderCells() {
-    console.log("hehehehhehehheheheh", this.state.meals)
+
     const { currentMonth, selectedDate } = this.state;
     const monthStart = dateFns.startOfMonth(currentMonth);
     const monthEnd = dateFns.endOfMonth(monthStart);
@@ -90,7 +90,7 @@ class Calendar extends React.Component {
 
           return isSameDay(new Date(day.meal_day), (new Date(cloneDay)))
         })
-        console.log("guess here is it", filter)
+
         days.push(
 
           <div
@@ -100,10 +100,15 @@ class Calendar extends React.Component {
                 : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
               }`}
             key={day}
-            onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+            onDoubleClick={() => this.onDateClick(dateFns.parse(cloneDay))}
 
           >
-            {(filter.length > 0) ? (<ToggleColor meals={this.state.meals} filter={filter}/> ) : null}
+            {(filter.length > 0) ? (<ToggleColor
+              meals={this.state.meals}
+              filter={filter}
+              removeRecipe={this.removeRecipe}
+              pantryCheck={this.pantryCheck} />
+            ) : null}
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>
 
@@ -120,17 +125,19 @@ class Calendar extends React.Component {
     }
     return (
       <div className="body">
-        {(this.state.isClicked) ? (<Mealer selectedRecipe={this.selectedRecipe}
-          day={this.state.selectedDate}
-          onDateClick={this.onDateClick}
-        />
+        {(this.state.isClicked) ? (
+          <Mealer
+            selectedRecipe={this.selectedRecipe}
+            day={this.state.selectedDate}
+            onDateClick={this.onDateClick}
+          />
         ) : rows}
 
       </div>
     )
   }
 
-  
+
 
   saveToDb = (planMeal) => {
     axios.post('/api/calendar', planMeal).then(() => {
@@ -144,6 +151,14 @@ class Calendar extends React.Component {
         meals: res.data
       })
     })
+  }
+
+  removeRecipe = (id) => {  
+    console.log(`this is before the axios`)
+    axios.delete(`/api/calendar/${id}`).then(() => {
+      console.log(`meal removed from calendar`)
+    })
+    this.getCalendarMeals()
   }
 
   onDateClick = day => {
@@ -160,7 +175,7 @@ class Calendar extends React.Component {
       meals: [...this.state.meals, planMeal]
     })
     this.saveToDb(planMeal)
-    
+
 
   }
 

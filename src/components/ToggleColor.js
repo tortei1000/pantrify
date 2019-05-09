@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
-import { ENGINE_METHOD_ALL } from 'constants';
+
 
 
 export default class ToggleColor extends Component {
@@ -12,30 +12,24 @@ export default class ToggleColor extends Component {
     }
   }
 
-  // componentDidMount() {
-  //   console.log(this.props.meals)
-  //   // this.props.meals.map((meal) => { return this.toggleColor(meal.recipe) })
-
-
-  // }
-
-  // toggleColor = (title) => {
-  //   axios.get(`/api/calendar/${title}`).then((res) => {
-      
-  //   })
-  // }
+  
 
   render() {
-    // console.log(this.toggleColor(this.props.filter[0].recipe))
-    let filteredMeal = this.props.filter.map((meal) => {
-      return <p style={{ color:'green' }}>{meal.recipe}</p>
-    })
+    
+    // let filteredMeal = this.props.filter.map((meal, index) => {
+    //   return (<>
+    //     <p style={{ color: 'green' }}>{meal.recipe}</p>
+    //     <button onClick={()=>this.props.removeRecipe(index)}>remove recipe</button>
+    //   </>)
+    // })
     return (
       <>
-        {/* {this.props.filter.map((meal) => {
-          return <p style={this.state.isInPantry ? { color: "green" } : { color: "red" }}>{meal.recipe}</p>
-        })} */}
-        {filteredMeal}
+        {this.props.filter.map((meal, index) => {
+          
+          return <><p style={this.state.isInPantry ? {color: "green" } : { color: "red" }}>{meal.recipe}
+          <div><button onClick={()=>this.props.removeRecipe(meal.id)}>clear</button></div></p>
+        </>})}
+        {/* {filteredMeal} */}
       </>
     )
   }
