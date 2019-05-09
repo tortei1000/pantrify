@@ -6,7 +6,9 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { updateUsername } from "../redux/auth_reducer"
 import axios from 'axios'
+import ToggleColor from './ToggleColor'
 const isSameDay = require('date-fns/is_same_day')
+
 
 class Calendar extends React.Component {
   state = {
@@ -14,16 +16,16 @@ class Calendar extends React.Component {
     selectedDate: new Date(),
     meals: [],
     isClicked: false,
-    isInPantry: false
+    isInPantry: false,
+    mappedArray:[]
   };
 
   componentDidMount() {
     axios.get('/auth/users').then((res) => {
-
       this.props.updateUsername(res.data.username)
     }).catch((err) => { console.log(err) })
     this.getCalendarMeals()
-    
+        
   }
 
   renderHeader() {
@@ -85,10 +87,10 @@ class Calendar extends React.Component {
         formattedDate = dateFns.format(day, dateFormat);
         const cloneDay = day;
         let filter = this.state.meals.filter((day) => {
-          
+
           return isSameDay(new Date(day.meal_day), (new Date(cloneDay)))
         })
-          console.log("guess here is it", filter)
+        console.log("guess here is it", filter)
         days.push(
 
           <div
@@ -101,8 +103,7 @@ class Calendar extends React.Component {
             onClick={() => this.onDateClick(dateFns.parse(cloneDay))}
 
           >
-            {(filter.length > 0) ? (<p style={this.state.isInPantry ? { color: "green" } : { color: "red" }}>
-              {filter[0].recipe}</p>) : null}
+            {(filter.length > 0) ? (<ToggleColor meals={this.state.meals} filter={filter}/> ) : null}
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>
 
@@ -129,14 +130,16 @@ class Calendar extends React.Component {
     )
   }
 
+  
+
   saveToDb = (planMeal) => {
-    axios.post('/api/calendar', planMeal).then(()=>{
+    axios.post('/api/calendar', planMeal).then(() => {
       console.log("meals are saved on db")
     })
   }
 
   getCalendarMeals = () => {
-    axios.get('/api/calendar').then((res)=>{
+    axios.get('/api/calendar').then((res) => {
       this.setState({
         meals: res.data
       })
@@ -151,12 +154,14 @@ class Calendar extends React.Component {
   };
 
   selectedRecipe = (meal_day, value) => {
-    const {title:recipe} = value
-    let planMeal = { meal_day, recipe}
+    const { title: recipe } = value
+    let planMeal = { meal_day, recipe }
     this.setState({
       meals: [...this.state.meals, planMeal]
     })
     this.saveToDb(planMeal)
+    
+
   }
 
   nextMonth = () => {
