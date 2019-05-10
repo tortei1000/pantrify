@@ -1,0 +1,39 @@
+@import 'variable';
+
+.hamburger_container{
+  
+  .link_container{
+    
+    list-style: none;
+    
+    .link_text{
+      text-decoration: none;
+      font-weight: 600;
+      color: $primary-font-color;
+      text-align: center;
+      font-size: 28px;
+      margin: 1.5em;
+      font-family: $font-stack;
+    }
+    .link_text:hover{
+      color: black;
+    }
+    
+  }
+}
+
+
+
+.nav_container{
+  margin-left: 1em;
+  display: flex;
+  justify-content: space-between;
+
+}
+
+@media(min-width:600px){
+  .link_text {
+    display: hidden;
+    color: red
+  }
+}

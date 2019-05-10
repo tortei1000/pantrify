@@ -1,0 +1,35 @@
+.recipe_container{
+  
+  max-width: 85%;
+  margin: 2em;
+  .title_container{
+    font-size: 18px;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  
+  .ingredients_container{
+    
+    display: flex;
+    justify-content: space-around;
+
+    
+    .quantity_unit_container{
+      display: flex;
+      
+      
+          
+      .ingredient_unit_container{
+        
+        margin-left: 1em;
+      }
+    }
+    
+  }
+}
+
+.subheader_container {
+  margin: 1.5em;
+  font-weight: 600;
+}

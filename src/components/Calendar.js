@@ -7,6 +7,7 @@ import { connect } from 'react-redux'
 import { updateUsername } from "../redux/auth_reducer"
 import axios from 'axios'
 import ToggleColor from './ToggleColor'
+import PrintThisComponent from './PrintThisComponent'
 const isSameDay = require('date-fns/is_same_day')
 
 
@@ -132,7 +133,7 @@ class Calendar extends React.Component {
             onDateClick={this.onDateClick}
           />
         ) : rows}
-
+        <PrintThisComponent />
       </div>
     )
   }

@@ -24,10 +24,10 @@ export default class RecipeCard extends Component {
 
     return (
       <div >
-        <div style={{ border: 'solid' }} >
+        <div className="recipe_card_container">
 
-          <li key={index} style={{ listStyle: 'none' }}>Recipe Title: {item.title}</li>
-          <div ><img className="house_image"
+          <li className="title_container" key={index} style={{ listStyle: 'none' }}>{item.title}</li>
+          <div className="image_container"><img className="house_image"
             src={item.images}
             alt='broken' width='300px' /></div>
 

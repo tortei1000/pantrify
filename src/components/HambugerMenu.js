@@ -25,12 +25,12 @@ export default class HamburgerMenu extends Component {
 
   navigationLinks() {
     return [
-      <ul>
+      <ul className="hamburger_container">
         
-        <li key={1}><Link to='/home'>my recipes</Link></li>
-        <li key={2}><Link to='/shoppinglist'>shopping list</Link></li>
-        <li key={3}><Link to='/pantry'>Pantry</Link></li>
-        <li key={4}><Link to='/calendar'>Calendar</Link></li>
+        <li className="link_container" key={1}><Link to='/home' className="link_text">MY RECIPES</Link></li>
+        <li className="link_container" key={2}><Link to='/shoppinglist' className="link_text">SHOPPING LIST</Link></li>
+        <li className="link_container" key={3}><Link to='/pantry' className="link_text">PANTRY</Link></li>
+        <li className="link_container"key={4}><Link to='/calendar' className="link_text">CALENDAR</Link></li>
       </ul>
     ];
   }
@@ -69,8 +69,8 @@ export default class HamburgerMenu extends Component {
   render() {
     return(
       <div className="nav_container">
-        <div className="site_title"><Link to="/">Pantrify</Link></div>
         {this.renderNavigation()}
+        
       </div>
     )
   }
