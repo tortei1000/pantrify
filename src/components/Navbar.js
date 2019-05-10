@@ -27,25 +27,25 @@ class Navbar extends Component {
         return (
 
             <nav>
-                <span>PANTRIFY</span>
+                <span className="app_name_container">PANTRIFY</span>
 
 
                 {!this.props.username ? (
-                    <ul>
-                        <li>
-                            <Link to='/login'>Login</Link>
+                    <ul className="login_register_container">
+                        <li className="login_container">
+                            <Link to='/login' className="login_text">Login</Link>
                         </li>
-                        <li>
-                            <Link to='/register'>Register</Link>
+                        <li className="register_container">
+                            <Link to='/register' className="register_text">Get Started</Link>
                         </li>
                     </ul>
                 ) : (
                         <>
                             <HamburgerMenu />
-                            <Link to='/home'>my recipes</Link>
+                            {/* <Link to='/home'>my recipes</Link>
                             <Link to='/shoppinglist'>shopping list</Link>
                             <Link to='/pantry'>Pantry</Link>
-                            <Link to='/calendar'>Calendar</Link>
+                            <Link to='/calendar'>Calendar</Link> */}
                         </>
                     )}
 

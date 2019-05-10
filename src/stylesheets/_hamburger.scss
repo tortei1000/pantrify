@@ -30,10 +30,18 @@
   justify-content: space-between;
 
 }
+.material-icons{
+    font-size: 32px;
+  }
 
 @media(min-width:600px){
-  .link_text {
-    display: hidden;
-    color: red
+  .material-icons{
+    font-size: 62px;
   }
+
+  .hamburger_container{
+    display: flex;
+    justify-content: space-between;
+  }
+  
 }

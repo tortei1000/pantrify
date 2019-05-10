@@ -1,0 +1,36 @@
+@import 'variable';
+
+.login_register_container{
+  list-style: none;
+  font-size: 25px;
+  display: flex;
+  justify-content: space-around;
+  font-family: $font-stack;
+  
+  padding: 0;
+  
+  
+  .login_container{
+    .login_text{
+      text-decoration: none;
+      color: black;
+    }
+  }
+  .register_container{
+    .register_text{
+      text-decoration: none;
+      color:white;
+      background-color: rgb(111, 233, 111);
+      border-radius: 5px;
+      padding: 3px;
+    }
+  }
+
+}
+
+.app_name_container{
+  font-size: 20px;
+  font-weight: 800;
+  font-family: $fancy-font;
+  margin: 2em;
+}
