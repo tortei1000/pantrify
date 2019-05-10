@@ -6,7 +6,8 @@ const initialState = {
   title: '',
   instructions: '',
   ingredients: [],
-  recipe_id: null
+  recipe_id: null,
+  image: ''
 }
 
 const UPDATE_USER_ID = "UPDATE_USER_ID"
@@ -16,6 +17,7 @@ const LOGOUT = 'LOGOUT'
 const CREATE_RECIPE_TITLE = 'CREATE_RECIPE_TITLE'
 const ADD_INGREDIENTS = 'ADD_INGREDIENTS'
 const REFRESH_STATE = 'REFRESH_STATE'
+const CREATE_RECIPE_IMAGE = 'CREATE_RECIPE_IMAGE'
 
 
 export function refreshState() {
@@ -42,6 +44,13 @@ export function createRecipeTitle(obj) {
   return {
     type: CREATE_RECIPE_TITLE,
     payload: obj
+  }
+}
+
+export function createRecipeImage(image) {
+  return {
+    type: CREATE_RECIPE_IMAGE,
+    payload: image
   }
 }
 
@@ -93,6 +102,9 @@ export default function reducer(state = initialState, action) {
         ...state, title: '', instructions: '',
         ingredients: { name: '', quantity: null, unit: '' }
       }
+    case CREATE_RECIPE_IMAGE:
+      
+      return {...state, image:payload }
 
 
     default:

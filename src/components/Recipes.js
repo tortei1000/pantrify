@@ -66,15 +66,20 @@ class Recipes extends Component {
     })
   }
 
-
+  toggleRecipeSelected=()=>{
+    this.setState({
+      recipeSelected:!this.state.recipeSelected
+    })
+  }
 
   render() {
     let { recipes } = this.state
-
+    console.log(recipes, 'look here')
     return (
       <>{this.state.recipeSelected ?
         <Recipe item={this.state.selectedId} index={1}
-          deleteRecipe={this.deleteRecipe} /> :
+          deleteRecipe={this.deleteRecipe} 
+          toggleRecipeSelected={this.toggleRecipeSelected}/> :
         <div>
           <Search searchRecipe={this.searchRecipe}/>
           <Link to="/wizard/step1"><button >Create new recipe</button></Link>

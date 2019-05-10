@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { updateUserId, updateUsername } from '../../redux/auth_reducer'
 import axios from 'axios'
+import SimpleSlider from '../SimpleSlider'
 
 class NewUser extends Component {
     constructor() {
@@ -56,7 +57,7 @@ class NewUser extends Component {
                     />
                     <button>Done</button>
                 </form>
-                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" width="1200px" alt="error"/>
+                <SimpleSlider />
         {this.state.loginError && <h3>{this.state.loginErrorMessage}</h3>}
             </>
         )

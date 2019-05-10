@@ -1,52 +1,53 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Recipes from './Recipes'
 import axios from 'axios';
-import {updateUsername} from "../redux/auth_reducer"
-import AmazonS3 from './AmazonS3';
+import { updateUsername } from "../redux/auth_reducer"
+
+import SimpleSlider from './SimpleSlider';
 
 
 class Home extends Component {
-  constructor(){
+  constructor() {
     super()
     this.state = {
-      
+
     }
   }
-  componentDidMount(){
-    axios.get('/auth/users').then((res)=>{
-         
+  componentDidMount() {
+    axios.get('/auth/users').then((res) => {
       this.props.updateUsername(res.data.username)
-    }).catch((err)=>{console.log(err)})
+    }).catch((err) => { console.log(err) })
   }
-  
-  render(){
-  
 
-  
-      return(
+  render() {
+
+
+
+    return (
       <div>
         {this.props.username ? (
           <div>
             <h1>
               My Recipes
             </h1>
-            <Recipes  /> 
-            {/* <AmazonS3 /> */}
+            <Recipes />
+            
           </div>
         ) : (
-          <div >
-            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?ixlib=rb-1.2.1&auto=format&fit=crop&w=934&q=80" width="1200px" alt="error"/>
-          </div>
-        )}
-        
+            <div >
+
+              <SimpleSlider />
+            </div>
+          )}
+
       </div>
-      )
-      
-    }
+    )
 
   }
+
+}
 const mapDispatchToProps = {
   updateUsername
 }

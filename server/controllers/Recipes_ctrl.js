@@ -33,11 +33,11 @@ module.exports = {
     const { session } = req
     console.log(session.user)
     const db = req.app.get('db')
-    const { title, instructions, ingredients } = req.body
+    const { title, instructions, image, ingredients } = req.body
     const { id } = req.session.user
 
 
-    db.create_recipe([id, title, instructions]).then((id_array) => {
+    db.create_recipe([id, title, instructions, image]).then((id_array) => {
       console.log(ingredients)
       ingredients.forEach(ingredient => {
         const { name, quantity, unit } = ingredient

@@ -2,14 +2,15 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import {createRecipeTitle} from '../../redux/auth_reducer'
-
+import AmazonS3 from '../../components/AmazonS3'
 class Step1 extends Component {
   constructor() {
     
     super()
     this.state = {
       title: '',
-      instructions: '' 
+      instructions: '',
+      
       
     }
   }
@@ -43,6 +44,7 @@ class Step1 extends Component {
         <div>
           <input name="title" placeholder="title" onChange={this.handleChange} />
           <input name="instructions" placeholder="instructions" onChange={this.handleChange} />
+          <AmazonS3 />
           
         </div>
         <div>

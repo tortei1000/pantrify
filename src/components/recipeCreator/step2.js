@@ -29,8 +29,8 @@ class Step2 extends Component {
   }
 
   createRecipe = () => {
-    const { title, instructions, ingredients } = this.props
-    axios.post('/api/recipes', { title, instructions, ingredients }).then(() => { 
+    const { title, instructions, image,  ingredients } = this.props
+    axios.post('/api/recipes', { title, instructions, image,  ingredients }).then(() => { 
       
     })
   }

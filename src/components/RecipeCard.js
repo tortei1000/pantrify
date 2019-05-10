@@ -20,6 +20,7 @@ export default class RecipeCard extends Component {
 
   render() {
     const { item, index } = this.props
+    
 
     return (
       <div >
@@ -27,7 +28,7 @@ export default class RecipeCard extends Component {
 
           <li key={index} style={{ listStyle: 'none' }}>Recipe Title: {item.title}</li>
           <div ><img className="house_image"
-            src={`https://images.unsplash.com/photo-1459682687441-7761439a709d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2010&q=80`}
+            src={item.images}
             alt='broken' width='300px' /></div>
 
 
