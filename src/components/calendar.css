@@ -46,6 +46,7 @@
 }
 
 body {
+    
     font-family: 'Open Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
     font-size: 1em;
     font-weight: 300;
@@ -75,6 +76,7 @@ header #logo .icon {
 }
 
 main {
+  
   display: block;
   margin: 0 auto;
   margin-top: 5em;
@@ -122,6 +124,7 @@ main {
 /* Calendar */
 
 .calendar {
+  
   display: block;
   position: relative;
   width: 100%;

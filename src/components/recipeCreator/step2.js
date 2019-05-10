@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios';
-import { addIngredients } from "../../redux/auth_reducer"
+import { addIngredients, refreshState } from "../../redux/auth_reducer"
 
 class Step2 extends Component {
   constructor() {
@@ -28,11 +28,10 @@ class Step2 extends Component {
 
   }
 
-  createRecipe = () => {
+  createRecipe = async() => {
     const { title, instructions, image,  ingredients } = this.props
-    axios.post('/api/recipes', { title, instructions, image,  ingredients }).then(() => { 
-      
-    })
+    await axios.post('/api/recipes', { title, instructions, image,  ingredients })
+    this.props.refreshState()
   }
 
   handleChange = (e) => {
@@ -76,7 +75,8 @@ class Step2 extends Component {
 }
 
 const mapDispatchToProps = {
-  addIngredients
+  addIngredients,
+  refreshState
 }
 
 const mapStateToProps = (reduxState) => {

@@ -174,9 +174,7 @@ class Calendar extends React.Component {
     const { title: recipe } = value
     let planMeal = { meal_day, recipe }
     this.saveToDb(planMeal)
-    // this.setState({
-    //   meals: [...this.state.meals, planMeal]
-    // })
+    
 
     this.setState({
       isClicked: !this.state.isClicked
