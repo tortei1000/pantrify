@@ -3,9 +3,25 @@ import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from '../redux/auth_reducer'
 import axios from 'axios'
+import HamburgerMenu from './HambugerMenu'
 
-class Navbar extends Component { 
-    
+class Navbar extends Component {
+    constructor() {
+        super()
+        this.state = {
+
+            open: [false, true, false, true]
+
+        }
+    }
+
+    handleClick(id) {
+        let { open } = this.state;
+        this.setState({
+            open: [...open.slice(0, id), !open[id], ...open.slice(id + 1)]
+        });
+    }
+
     render() {
         const { username } = this.props
         return (
@@ -24,18 +40,19 @@ class Navbar extends Component {
                         </li>
                     </ul>
                 ) : (
-                    <>
-                    <Link to='/home'>my recipes</Link>
-                    <Link to='/shoppinglist'>shopping list</Link>
-                    <Link to='/pantry'>Pantry</Link>
-                    <Link to='/calendar'>Calendar</Link>
-                    </>
-                )}
+                        <>
+                            <HamburgerMenu />
+                            <Link to='/home'>my recipes</Link>
+                            <Link to='/shoppinglist'>shopping list</Link>
+                            <Link to='/pantry'>Pantry</Link>
+                            <Link to='/calendar'>Calendar</Link>
+                        </>
+                    )}
 
                 {username && <div>Welcome, {username}  <button onClick={() => {
                     this.props.logout()
-                    axios.get('/auth/logout').then(()=>{this.props.history.push('/home')})
-                    
+                    axios.get('/auth/logout').then(() => { this.props.history.push('/home') })
+
 
                 }}>logout</button></div>}
 
