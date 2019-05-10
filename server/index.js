@@ -6,8 +6,9 @@ const session = require('express-session')
 const Auth_ctrl = require('./controllers/Auth_ctrl')
 const Recipes_ctrl = require('./controllers/Recipes_ctrl')
 const Calendar_ctrl = require('./controllers/Calendar_ctrl')
+const aws = require('aws-sdk');
 
-const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING } = process.env
+const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING,  S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env
 
 app.use(express.json())
 
@@ -27,6 +28,38 @@ massive(CONNECTION_STRING).then((database) => {
     console.log(`2-server is connected on ${SERVER_PORT}`)
   })
 })
+
+app.get('/api/signs3', (req, res) => {
+  aws.config = {
+    region: 'us-west-1',
+    accessKeyId: AWS_ACCESS_KEY_ID,
+    secretAccessKey: AWS_SECRET_ACCESS_KEY,
+  };
+
+  const s3 = new aws.S3();
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read',
+  };
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if (err) {
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`,
+    };
+
+    return res.send(returnData);
+  });
+});
 
 app.post('/auth/login', Auth_ctrl.login)
 app.post('/auth/register', Auth_ctrl.register)

@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import Recipes from './Recipes'
 import axios from 'axios';
 import {updateUsername} from "../redux/auth_reducer"
+import AmazonS3 from './AmazonS3';
 
 
 class Home extends Component {
@@ -32,6 +33,7 @@ class Home extends Component {
               My Recipes
             </h1>
             <Recipes  /> 
+            {/* <AmazonS3 /> */}
           </div>
         ) : (
           <div >
