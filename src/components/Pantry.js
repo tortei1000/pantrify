@@ -6,7 +6,7 @@ import { updateUsername } from "../redux/auth_reducer"
 
 class Pantry extends Component {
 
-  constructor() {  
+  constructor() {
     super()
     this.state = {
       ingredients: []
@@ -20,21 +20,21 @@ class Pantry extends Component {
     this.getPantry()
 
   }
-  getPantry=()=>{
+  getPantry = () => {
     axios.get('/api/pantry').then((result) => {
       this.setState({ ingredients: result.data })
     })
   }
 
-  removeFromList =(id)=>{
-    axios.put(`/api/shoppinglist/${id}` ).then((res)=>{
+  removeFromList = (id) => {
+    axios.put(`/api/shoppinglist/${id}`).then((res) => {
       console.log(res.status)
     })
     this.getPantry()
   }
 
-  removeFromPantry =(id)=>{
-    axios.put(`/api/removepantry/${id}` ).then((res)=>{
+  removeFromPantry = (id) => {
+    axios.put(`/api/removepantry/${id}`).then((res) => {
       console.log(res.status)
     })
     this.getPantry()
@@ -45,19 +45,23 @@ class Pantry extends Component {
     const list = ingredients.map((ingredient) => {
       return (
         <>
-          <li>{ingredient.name}</li>
-          <li>{ingredient.quantity}</li>
-          <li>{ingredient.unit}</li>
-          <button onClick={()=>{this.removeFromPantry(ingredient.id)}}>remove item</button>
-          
+          <div className="shopping_container">
+            <p className="ingredient_name_container">{ingredient.name}</p>
+            <div className="quantity_unit_container"></div>
+            <p className="ingredient_quantity_container">{ingredient.quantity}</p>
+            <p className="ingredient_unit_container">{ingredient.unit}</p>
+          </div>
+          <div className="buttons_container">
+            <button onClick={() => { this.removeFromPantry(ingredient.id) }}>remove item</button>
+          </div>
         </>
       )
     })
     return (
       <div>
-        <h1>My Pantry</h1>
+        <h2 className="header_title">My Pantry</h2>
         {list}
-        
+
       </div>
     )
   }

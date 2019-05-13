@@ -1,0 +1,32 @@
+@import 'variable';
+
+.header_day_container{
+  display: flex;
+  justify-content: space-evenly;
+  padding: .5em;
+  
+  .header_mealer{
+    font-size: 22px;
+    font-weight: bold;
+    
+  }
+  .day{
+    font-size: 22px;
+  }
+}
+
+.recipe_button_container{
+  list-style: none;
+  padding: 0.5em;
+  font-family: $font-stack;
+  font-size: 18px;
+}
+.button_mealer_container{
+  border: solid;
+  
+  .mealer_button{
+    padding: .5em;
+    border: $primary-font-color;
+    color: white;
+  }
+}

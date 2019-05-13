@@ -11,19 +11,25 @@ export default class ToggleColor extends Component {
       searchArray: []
     }
   }
-  
+
 
   render() {
-    
+
     console.log(this.props.filter)
     return (
       <>
         {this.props.filter.map((meal, index) => {
           console.log(meal)
-          return <><p key={index} >{meal.recipe}
-          <div><button onClick={()=>this.props.removeRecipe(meal.id)}>clear</button></div></p>
-        </>})}
-        
+          return <>
+            <p className="recipe_title"
+              key={index} >{meal.recipe}
+              <div>
+                <button className="button_clear" onClick={() => this.props.removeRecipe(meal.id)}>clear</button>
+              </div>
+            </p>
+          </>
+        })}
+
       </>
     )
   }
