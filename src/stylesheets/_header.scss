@@ -46,3 +46,24 @@
 .logout_button{
   font-size: 15px;
 }
+.logo {
+  display: none;
+}
+@media(min-width:600px){
+  .login_register_container{
+    
+    font-size: 35px;
+  } 
+
+  .app_name_container{
+    background-image: 'logo.png';
+    display: none;
+  }
+  .logo{
+    display: block;
+    height: 15vh;
+  }
+  .app_name_logout_container{
+    height: 10vh;
+  }
+}

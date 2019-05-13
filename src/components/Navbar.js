@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { logout } from '../redux/auth_reducer'
 import axios from 'axios'
 import HamburgerMenu from './HambugerMenu'
+import logo from '../stylesheets/logo.png'
 
 class Navbar extends Component {
     constructor() {
@@ -29,6 +30,7 @@ class Navbar extends Component {
             <nav>
                 <div className="app_name_logout_container">
                     <span className="app_name_container">PANTRIFY</span>
+                    <img src={logo} className="logo" />
                     {username && <div>Welcome, {username}  <button className="logout_button" onClick={() => {
                         this.props.logout()
                         axios.get('/auth/logout').then(() => { this.props.history.push('/home') })
