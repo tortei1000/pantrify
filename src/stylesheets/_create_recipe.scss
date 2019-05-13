@@ -1,0 +1,54 @@
+.create_container{
+  
+  padding: 0.5em;
+  .input_container_create{
+    
+    
+
+    input{
+      
+      font-size: 20px;
+      border: none;
+      border-bottom: 1px solid gray; 
+      width: 100%;
+    }
+    textarea{
+      width: 100%;
+      font-size: 18px;
+      row-gap: 1px;
+      overflow: auto;
+      height: 20vh;
+      border: solid 1px gray;
+    }
+    .amazon{
+      
+      height: 25vh;
+    }
+  }
+}
+
+.current_ingredients{
+  justify-content: space-around;
+  display: flex;
+  
+  
+  .ingredients_container{
+    
+    display: flex;
+    justify-content: space-around;
+   
+     .ingredient_name_container{
+      
+      }
+  }
+  .quantity_unit_container{
+    display: flex;
+    .ingredient_quantity_container{
+      
+    }
+    .ingredient_unit_container{
+      margin-left: 1em;
+    }
+  }
+
+}

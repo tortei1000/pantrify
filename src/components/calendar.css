@@ -56,7 +56,7 @@ body {
     color: var(--text-color);
     background: var(--bg-color);
     position: relative;
-    padding: 1em;
+    padding: .5em;
 }
 
 header {

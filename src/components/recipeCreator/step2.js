@@ -10,7 +10,7 @@ class Step2 extends Component {
     super()
     this.state = {
       name: '',
-      quantity: null, 
+      quantity: 0,
       unit: ''
 
     }
@@ -18,19 +18,19 @@ class Step2 extends Component {
 
   addIngredientsToState = () => {
     const { name, quantity, unit } = this.state
-        
+
     this.props.addIngredients({ name, quantity, unit })
     this.setState({
       name: "",
-      quantity: null,
+      quantity: 0,
       unit: ""
     })
 
   }
 
-  createRecipe = async() => {
-    const { title, instructions, image,  ingredients } = this.props
-    await axios.post('/api/recipes', { title, instructions, image,  ingredients })
+  createRecipe = async () => {
+    const { title, instructions, image, ingredients } = this.props
+    await axios.post('/api/recipes', { title, instructions, image, ingredients })
     this.props.refreshState()
   }
 
@@ -47,28 +47,39 @@ class Step2 extends Component {
 
   render() {
     return (
-      <div>
-        Wizard
+      <div className="create_container">
 
-        <div>
-          <input name="name" placeholder="name" value={this.state.name} onChange={this.handleChange} />
-          <input name="quantity" placeholder="quantity" value={this.state.quantity} onChange={this.handleChange} />
-          <input name="unit" placeholder="unit" value={this.state.unit} onChange={this.handleChange} />
+
+        <div className="input_container_create">
+          <p>Ingredient Name:</p>
+          <input name="name" value={this.state.name} onChange={this.handleChange} />
+          <p>Quantity:</p>
+          <input name="quantity" value={this.state.quantity} onChange={this.handleChange} />
+          <p>Unit</p>
+          <input name="unit" value={this.state.unit} onChange={this.handleChange} />
 
         </div>
-        <div>
+        <div className="buttons_container">
           <button onClick={this.addIngredientsToState}>add ingredients</button>
           <Link to="/home"><button onClick={this.createRecipe}>Done</button></Link>
-          {this.props.ingredients.map((ingredient) => {
-            return (
-              <>
-                <p>{ingredient.name}</p>
-                <p>{ingredient.quantity}</p>
-                <p>{ingredient.unit}</p>
-
-              </>)
-          })}
         </div>
+          <p>The recipe currently has this ingredients:</p>
+        {this.props.ingredients.map((ingredient) => {
+          return (
+            <>
+              
+              <div className="current_ingredients">
+                <div className="ingredients_container">
+                  <p className="ingredient_name_container">{ingredient.name}</p>
+                </div>
+                <div className="quantity_unit_container">
+                  <p className="ingredient_quantity_container">{ingredient.quantity}</p>
+                  <p className="ingredient_unit_container">{ingredient.unit}</p>
+                </div>
+              </div>
+            </>)
+        })}
+
       </div>
     )
   }

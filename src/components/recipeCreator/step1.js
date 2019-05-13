@@ -30,18 +30,19 @@ class Step1 extends Component {
 
   render() {
     return (
-      <div>
-        Wizard
-
-        <div>
-          <input name="title" placeholder="title" onChange={this.handleChange} />
-          <textarea style={{height:'300px', width:"300px"}} name="instructions" placeholder="instructions" onChange={this.handleChange} />
-          <AmazonS3 />
-
+      <div className="create_container">
+        <div className="input_container_create">
+          <p>Recipe Title:</p>
+          <input name="title" onChange={this.handleChange} />
+          <p>Cooking Directions:</p>
+          <textarea name="directions" onChange={this.handleChange} />
+          <div className="amazon">
+            <AmazonS3 />
+          </div>
         </div>
-        <div>
+        <div  className="buttons_container">
 
-          <Link to="/wizard/Step2"><button onClick={this.addRecipe}>next</button></Link>
+          <Link to="/wizard/Step2"><button className="next_button" onClick={this.addRecipe}>next</button></Link>
         </div>
       </div>
     )
