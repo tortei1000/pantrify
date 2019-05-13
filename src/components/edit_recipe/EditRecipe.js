@@ -11,8 +11,9 @@ export default class EditRecipe extends Component {
     return (
       <div>
         Edit the recipe
+        <div className="buttons_container">
         <Link to="/"><button>cancel</button></Link>
-        
+        </div>
         <Switch>
           <Route component={Edit1} exact path="/editrecipe/edit1/:id" />
           <Route component={Edit2} exact path="/editrecipe/edit2/:id" />

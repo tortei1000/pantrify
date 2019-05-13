@@ -27,7 +27,11 @@ export default class Search extends Component {
       <section >
 
         <div className="search_container">
-          <input className="search_input" onChange={(e)=>this.handleChange(e)} placeholder="Search Your Recipes" />
+          <input className="search_input" onKeyPress={(e)=>{
+            console.log('this is e', e)
+            if(e.key === 'Enter'){ 
+            this.props.searchRecipe(this.state.filterText)}}} 
+          onChange={(e)=>this.handleChange(e)} placeholder="Search Your Recipes" />
           
           <i class="fas fa-search" onClick={()=>this.props.searchRecipe(this.state.filterText)}></i>
           

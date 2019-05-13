@@ -37,15 +37,17 @@ class Edit1 extends Component {
 
   render() {
     return (
-      <div>
-        This is where you edit the recipe
+      <div className="create_container">
+        
 
-        <div>
-          <input name="title" placeholder="title" onChange={this.handleChange} />
-          <input name="instructions" placeholder="instructions" onChange={this.handleChange} />
+        <div className="input_container_create">
+          <p>Recipe Title:</p>
+          <input name="title"  onChange={this.handleChange} />
+          <p>Recipe INstructions</p>
+          <textarea name="instructions" onChange={this.handleChange} />
           
         </div>
-        <div>
+        <div className="buttons_container">
 
           <Link to={`/editrecipe/edit2/${this.props.match.params.id}`}><button onClick={this.addRecipe}>next</button></Link>
         </div>

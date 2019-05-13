@@ -55,7 +55,7 @@ class Step2 extends Component {
           <input name="name" value={this.state.name} onChange={this.handleChange} />
           <p>Quantity:</p>
           <input name="quantity" value={this.state.quantity} onChange={this.handleChange} />
-          <p>Unit</p>
+          <p>Unit:</p>
           <input name="unit" value={this.state.unit} onChange={this.handleChange} />
 
         </div>
