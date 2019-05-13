@@ -33,7 +33,7 @@ class Recipe extends Component {
 
 
     return (
-      <div >
+      <>
         <div className="recipe_container" >
 
           <li className="title_container" key={index} style={{ listStyle: 'none' }}>{item.title}</li>
@@ -66,7 +66,7 @@ class Recipe extends Component {
           <button onClick={this.props.toggleRecipeSelected}>Back</button>
 
         </div>
-      </div>
+      </>
     )
   }
 }

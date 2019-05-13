@@ -1,7 +1,7 @@
 .recipe_container{
   
   max-width: 85%;
-  margin: 2em;
+  margin: 0 auto;
   .title_container{
     font-size: 18px;
     font-weight: 800;
@@ -36,5 +36,35 @@
 }
 
 @media(min-width:600px){
-  
+  .recipe_container{
+    
+    
+    .title_container{
+      font-size: 30px;
+      margin-bottom: .5em;
+    }
+    .image_container_in_recipe{
+      float: left;
+      margin: 1em;
+      
+    }
+    .instruction_container{
+      margin-bottom: 0.5em;
+      font-size: 24px;
+    }
+    .ingredients_container{
+      font-size: 24px;
+      .quantity_unit_container{
+        font-size: 24px;
+        .ingredient_unit_container{
+          font-size: 24px;
+
+        }
+      }
+    }
+  }
+  .subheader_container{
+    font-size: 28px;
+    margin: 0;
+  }
 }
