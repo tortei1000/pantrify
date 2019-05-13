@@ -14,3 +14,19 @@
 
   
 }
+@media(min-width:600px){
+  .recipe_card_container{
+    
+    width: 22vw;
+    .title_container{
+      font-size: 20px;
+    }
+
+  }
+  .house_image{
+    display: block;
+    width: 95%;
+    margin: auto;
+    padding: 0.5em;
+  }
+}

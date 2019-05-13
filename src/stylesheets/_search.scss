@@ -1,6 +1,7 @@
 .search_container{
   width: 100vw;
   
+  
 }
 
 .search_input{
@@ -14,3 +15,10 @@
   font-size: 20px;
 }
 
+@media(min-width:600px){
+  .search_input{
+    width: 75%;
+    margin-left: 3em;
+    font-size: 26px;
+  }
+}

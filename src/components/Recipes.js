@@ -76,20 +76,22 @@ class Recipes extends Component {
     let { recipes } = this.state
 
     return (
+      
       <div >{this.state.recipeSelected ?
         <Recipe item={this.state.selectedId} index={1}
           deleteRecipe={this.deleteRecipe}
           toggleRecipeSelected={this.toggleRecipeSelected} /> :
-        <div >
 
+        <div className="here">
           <Search searchRecipe={this.searchRecipe} />
           <div className="create_button_container">
             <Link to="/wizard/step1"><button className="create_recipe_button">Create new recipe</button></Link>
           </div>
-
+          <div className="recipes_container">
           {recipes[0] ? recipes.map((item, index) => {
 
             return (
+
               <div key={index} onClick={() => {
                 this.setState({
                   recipeSelected: true,
@@ -99,9 +101,9 @@ class Recipes extends Component {
                 <RecipeCard item={item} index={index} />
 
               </div>
-            )
-          }) : null
-          }
+            ) 
+          }): null
+          } </div>
 
 
         </div>}
