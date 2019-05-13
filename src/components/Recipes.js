@@ -23,7 +23,7 @@ class Recipes extends Component {
   componentDidMount() {
     this.getRecipes()
   }
-  
+
   getRecipes = () => {
     console.log(`get recipes is running`)
     axios.get('/api/recipes').then((res) => {
@@ -35,9 +35,9 @@ class Recipes extends Component {
   }
 
   searchRecipe = (text) => {
-    
+
     axios.get(`/api/recipes/?title=${text}`).then(res => {
-      
+
       this.setState({
 
         recipes: res.data
@@ -66,23 +66,27 @@ class Recipes extends Component {
     })
   }
 
-  toggleRecipeSelected=()=>{
+  toggleRecipeSelected = () => {
     this.setState({
-      recipeSelected:!this.state.recipeSelected
+      recipeSelected: !this.state.recipeSelected
     })
   }
 
   render() {
     let { recipes } = this.state
-    console.log(recipes, 'look here')
+
     return (
-      <>{this.state.recipeSelected ?
+      <div >{this.state.recipeSelected ?
         <Recipe item={this.state.selectedId} index={1}
-          deleteRecipe={this.deleteRecipe} 
-          toggleRecipeSelected={this.toggleRecipeSelected}/> :
-        <div>
-          <Search searchRecipe={this.searchRecipe}/>
-          <Link to="/wizard/step1"><button >Create new recipe</button></Link>
+          deleteRecipe={this.deleteRecipe}
+          toggleRecipeSelected={this.toggleRecipeSelected} /> :
+        <div >
+
+          <Search searchRecipe={this.searchRecipe} />
+          <div className="create_button_container">
+            <Link to="/wizard/step1"><button className="create_recipe_button">Create new recipe</button></Link>
+          </div>
+
           {recipes[0] ? recipes.map((item, index) => {
 
             return (
@@ -102,7 +106,7 @@ class Recipes extends Component {
 
         </div>}
 
-      </>
+      </div>
     )
   }
 }

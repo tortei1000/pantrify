@@ -27,8 +27,15 @@ class Navbar extends Component {
         return (
 
             <nav>
-                <span className="app_name_container">PANTRIFY</span>
+                <div className="app_name_logout_container">
+                    <span className="app_name_container">PANTRIFY</span>
+                    {username && <div>Welcome, {username}  <button className="logout_button" onClick={() => {
+                        this.props.logout()
+                        axios.get('/auth/logout').then(() => { this.props.history.push('/home') })
 
+
+                    }}>logout</button></div>}
+                </div>
 
                 {!this.props.username ? (
                     <ul className="login_register_container">
@@ -40,21 +47,13 @@ class Navbar extends Component {
                         </li>
                     </ul>
                 ) : (
-                        <>
+                        <div className="menu_logout_container">
                             <HamburgerMenu />
-                            {/* <Link to='/home'>my recipes</Link>
-                            <Link to='/shoppinglist'>shopping list</Link>
-                            <Link to='/pantry'>Pantry</Link>
-                            <Link to='/calendar'>Calendar</Link> */}
-                        </>
+
+                        </div>
                     )}
 
-                {username && <div>Welcome, {username}  <button onClick={() => {
-                    this.props.logout()
-                    axios.get('/auth/logout').then(() => { this.props.history.push('/home') })
 
-
-                }}>logout</button></div>}
 
             </nav>
         )

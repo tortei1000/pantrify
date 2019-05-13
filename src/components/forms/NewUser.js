@@ -39,34 +39,34 @@ class NewUser extends Component {
     render() {
         return (
             <>
-                <h1>Register</h1>
-                <form onSubmit= {this.handleNewUserFormSubmit}>
-                    <input
+                
+                <form className="form_container" onSubmit={this.handleNewUserFormSubmit}>
+                    <div className="login_subheader">Username</div>
+                    <input className="input_container"
                         type='text'
                         name='username'
-                        placeholder='username'
                         value={this.state.username}
                         onChange={this.handleFormInputUpdate}
                     />
-                    <input
+                    <div className="login_subheader">Password</div>
+                    <input className="input_container"
                         type='text'
                         name='password'
-                        placeholder='password'
                         value={this.state.password}
                         onChange={this.handleFormInputUpdate}
                     />
-                    <button>Done</button>
+                    <button className="login_button">Sign-up</button>
                 </form>
                 <SimpleSlider />
-        {this.state.loginError && <h3>{this.state.loginErrorMessage}</h3>}
+                {this.state.loginError && <h3>{this.state.loginErrorMessage}</h3>}
             </>
         )
     }
 }
 
 const mapDispatchToProps = {
-  updateUserId,
-  updateUsername
+    updateUserId,
+    updateUsername
 }
 
 export default connect(null, mapDispatchToProps)(withRouter(NewUser))

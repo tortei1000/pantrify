@@ -1,0 +1,22 @@
+.create_recipe_button{
+  font-size: 22px;
+  background: white;
+  color: black;
+  padding: 0.5em;
+}
+.create_recipe_button:hover{
+  background: black;
+  color: white;
+}
+
+.header_title{
+  text-align: center;
+  margin: 0;
+}
+
+.create_button_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.5em;
+  
+}

@@ -22,17 +22,17 @@ class Register extends Component {
         })
     }
 
-    handleLoginFormSubmit = async (e) => { 
+    handleLoginFormSubmit = async (e) => {
         e.preventDefault()
         const { loginUsername, loginPassword } = this.state
-        
+
         try {
-            
+
             const res = await axios.post('/auth/login', { loginUsername, loginPassword })
-            
+
             this.props.updateUsername(loginUsername)
             this.props.updateUserId(res.data.id)
-            
+
             this.props.history.push('/home')
         } catch (err) {
             this.setState({ loginUsername: '', loginPassword: '', loginError: true })
@@ -42,33 +42,33 @@ class Register extends Component {
     render() {
         return (
             <>
-                <h1>Login</h1>
-                <form onSubmit= {this.handleLoginFormSubmit}>
-                    <input
+                
+                <form className="form_container" onSubmit={this.handleLoginFormSubmit}>
+                    <div className="login_subheader">Username</div>
+                    <input className="input_container"
                         type='text'
                         name='loginUsername'
-                        placeholder='username'
                         value={this.state.loginUsername}
                         onChange={this.handleFormInputUpdate}
                     />
-                    <input
+                    <div className="login_subheader">Password</div>
+                    <input className="input_container"
                         type='text'
                         name='loginPassword'
-                        placeholder='password'
                         value={this.state.loginPassword}
                         onChange={this.handleFormInputUpdate}
                     />
-                    <button>Login</button>
+                    <button className="login_button">Login</button>
                 </form>
-        {this.state.loginError && <h3>{this.state.loginErrorMessage}</h3>}
+                {this.state.loginError && <h3>{this.state.loginErrorMessage}</h3>}
             </>
         )
     }
 }
 
 const mapDispatchToProps = {
-  updateUserId,
-  updateUsername
+    updateUserId,
+    updateUsername
 }
 
 export default connect(null, mapDispatchToProps)(withRouter(Register))

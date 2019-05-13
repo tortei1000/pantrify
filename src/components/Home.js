@@ -29,9 +29,9 @@ class Home extends Component {
       <div>
         {this.props.username ? (
           <div>
-            <h1>
+            <h2 className="header_title">
               My Recipes
-            </h1>
+            </h2>
             <Recipes />
             
           </div>

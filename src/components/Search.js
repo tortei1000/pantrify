@@ -26,10 +26,10 @@ export default class Search extends Component {
     return (
       <section >
 
-        <div >
-          <input onChange={(e)=>this.handleChange(e)} placeholder="Search Your Recipes" />
+        <div className="search_container">
+          <input className="search_input" onChange={(e)=>this.handleChange(e)} placeholder="Search Your Recipes" />
           
-          <button onClick={()=>this.props.searchRecipe(this.state.filterText)}>Search</button>
+          <i class="fas fa-search" onClick={()=>this.props.searchRecipe(this.state.filterText)}></i>
           
         </div>
         
