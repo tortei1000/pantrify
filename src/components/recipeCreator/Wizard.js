@@ -11,8 +11,9 @@ export default class Wizard extends Component {
     return (
       <div>
         Create a new recipe!
-        <Link to="/"><button>cancel</button></Link>
-        
+        <div className="buttons_container">
+        <Link to="/"><button >cancel</button></Link>
+        </div>
         <Switch>
           <Route component={Step1} exact path="/wizard/step1" />
           <Route component={Step2} exact path="/wizard/step2" />

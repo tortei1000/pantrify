@@ -59,11 +59,11 @@ class Recipe extends Component {
             })}</li>
 
         </div>
-        <div >
-          <button onClick={() => { this.props.deleteRecipe(item) }}>Delete</button>
+        <div className="buttons_container">
           <Link to={`/editrecipe/edit1/${item.id}`}><button>Edit Recipe</button></Link>
-          <button onClick={this.props.toggleRecipeSelected}>cancel</button>
           <button onClick={this.sendToList}>Add to List</button>
+          <button onClick={() => { this.props.deleteRecipe(item) }}>Delete</button>
+          <button onClick={this.props.toggleRecipeSelected}>Back</button>
 
         </div>
       </div>
