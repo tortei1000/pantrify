@@ -6,7 +6,7 @@ import { updateUsername } from "../redux/auth_reducer"
 
 class ShoppingList extends Component {
 
-  constructor() {  
+  constructor() {
     super()
     this.state = {
       ingredients: []
@@ -20,21 +20,21 @@ class ShoppingList extends Component {
     this.getIngredients()
 
   }
-  getIngredients=()=>{
+  getIngredients = () => {
     axios.get('/api/ingredients').then((result) => {
       this.setState({ ingredients: result.data })
     })
   }
 
-  removeFromList =(id)=>{
-    axios.put(`/api/shoppinglist/${id}` ).then((res)=>{
+  removeFromList = (id) => {
+    axios.put(`/api/shoppinglist/${id}`).then((res) => {
       console.log(res.status)
     })
     this.getIngredients()
   }
 
   addToPantry = (id) => {
-    axios.put(`/api/addtopantry/${id}`).then((res)=>{
+    axios.put(`/api/addtopantry/${id}`).then((res) => {
       console.log(res.status)
     })
     this.removeFromList(id)
@@ -46,19 +46,26 @@ class ShoppingList extends Component {
     const list = ingredients.map((ingredient) => {
       return (
         <>
-          <li>{ingredient.name}</li>
-          <li>{ingredient.quantity}</li>
-          <li>{ingredient.unit}</li>
-          <button onClick={()=>{this.addToPantry(ingredient.id)}}>add to pantry</button>
-          <button onClick={()=>{this.removeFromList(ingredient.id)}}>remove from list</button>
+          <div className="shopping_container">
+            <p className="ingredient_name_container">{ingredient.name}</p>
+            <div className="quantity_unit_container">
+              <p className="ingredient_quantity_container">{ingredient.quantity}</p>
+              <p className="ingredient_unit_container">{ingredient.unit}</p>
+            </div>
+
+          </div>
+          <div className="buttons_container">
+            <button onClick={() => { this.addToPantry(ingredient.id) }}>add to pantry</button>
+            <button onClick={() => { this.removeFromList(ingredient.id) }}>remove from list</button>
+          </div>
         </>
       )
     })
     return (
       <div>
-        <h1>Shopping List</h1>
+        <h2 className="header_title">Shopping List</h2>
         {list}
-        
+
       </div>
     )
   }

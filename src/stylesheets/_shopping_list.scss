@@ -1,0 +1,43 @@
+@import 'variable';
+  .shopping_container{
+    
+    display: flex;
+    justify-content: space-around;
+    padding: 0.5em;
+    font-weight: 800;
+    
+    .ingredient_name_container{
+      
+    }
+    .quantity_unit_container{
+      display: flex;
+      
+      
+          
+      .ingredient_unit_container{
+        
+        margin-left: 0.5em;
+      }
+    }
+    
+  }
+
+  .buttons_container{
+    
+    display: flex;
+    justify-content: space-around;
+    button{
+      font-size: 14px;
+      border: solid;
+      background: transparent;
+      border-radius: 5px;
+      color: $primary-font-color;
+      padding: 0.5em;
+      font-weight: 600;
+    }
+    button:hover{
+      background: $primary-font-color;
+      color: white;
+    }
+  }
+
