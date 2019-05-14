@@ -67,3 +67,12 @@
     height: 10vh;
   }
 }
+
+@media(min-width:1000px){
+  .logo{
+    
+    position: relative;
+    top: 0px;
+    
+  }
+}
