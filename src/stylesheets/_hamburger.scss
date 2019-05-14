@@ -48,3 +48,13 @@
   }
   
 }
+@media(min-width:1000px){
+  .hamburger_container{
+    display: flex;
+    flex-direction: row;
+    width: 90vw;
+    box-sizing: unset;
+    
+    padding-bottom: 2em;
+  }
+}

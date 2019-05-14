@@ -22,3 +22,14 @@
     font-size: 26px;
   }
 }
+
+@media(min-width:1000px){
+  .search_input{
+    
+    width: 65%;
+    margin-left: 15%;
+    margin-bottom: 2em;
+    margin-top: 3em;
+    
+  }
+}

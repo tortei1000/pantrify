@@ -39,3 +39,17 @@
   }
   
 }
+
+@media(min-width:1000px){
+  .recipe_card_container{
+    
+
+    .title_container{
+      font-size: 28px;
+    }
+    .image_container{
+      width: 300px;
+      height: 250px;
+    }
+  }
+}
