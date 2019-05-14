@@ -37,9 +37,7 @@ class Recipe extends Component {
         <div className="recipe_container" >
 
           <li className="title_container" key={index} style={{ listStyle: 'none' }}>{item.title}</li>
-          <div className="image_container_in_recipe"><img
-            src={item.images}
-            alt='broken' width='300px' /></div>
+          <div className="image_container_in_recipe" style={{backgroundImage: `url(${item.images})`}}></div>
           <li className="instruction_container" key={index} style={{ listStyle: 'none' }}>
             <p className="subheader_container">Instructions:</p>
             {item.instructions}</li>

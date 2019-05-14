@@ -2,12 +2,18 @@
   
   max-width: 85%;
   margin: 0 auto;
+
   .title_container{
     font-size: 18px;
     font-weight: 800;
     text-align: center;
   }
-
+  .image_container_in_recipe{
+   width: 300px;
+   height: 300px;
+   
+   
+  }
   
   .ingredients_container{
     
@@ -46,6 +52,7 @@
     .image_container_in_recipe{
       float: left;
       margin: 1em;
+      
       
     }
     .instruction_container{

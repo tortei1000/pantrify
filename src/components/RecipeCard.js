@@ -27,9 +27,7 @@ export default class RecipeCard extends Component {
         <div className="recipe_card_container">
 
           <li className="title_container" key={index} style={{ listStyle: 'none' }}>{item.title}</li>
-          <div className="image_container"><img className="house_image"
-            src={item.images}
-            alt='broken' width='300px' /></div>
+          <div className="image_container" style={{backgroundImage: `url(${item.images})`}}></div>
 
 
         </div>
