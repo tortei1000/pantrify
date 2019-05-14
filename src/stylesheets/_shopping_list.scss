@@ -70,3 +70,20 @@
       
     }
   }
+
+  @media(min-width:1000px){
+    .buttons_container{
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      button{ 
+        font-size: 14px;
+      }
+      
+    }
+    .shopping_container{
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
