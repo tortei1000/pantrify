@@ -24,6 +24,7 @@ class Recipes extends Component {
 
   componentDidMount() {
     this.getRecipes()
+    this.testSMS()
   }
 
   getRecipes = () => {
@@ -80,18 +81,18 @@ class Recipes extends Component {
     console.log(this.state.messageReceived)
     if (this.state.messageReceived === false) {
       await axios.get('/api/messages')
-      this.setState({ messageReceived: true, count: this.state.count++ })
+      this.setState({ messageReceived: true, count: ++this.state.count })
       console.log(`this is count in the if`, this.state.count)
       
 
     }else{
-      this.setState({count: this.state.count++})
-      if(this.state.count === 10){this.setState({messageReceived:false, count: 0})}
+      this.setState({count: ++this.state.count})
+      if(this.state.count === 24){this.setState({messageReceived:false, count: 0})}
       
       console.log(`this is count in the else`, this.state.count)
     } 
 
-    setTimeout(this.testSMS(), 10000)
+    setTimeout(this.testSMS, 1000*60*60)
   }
 
 
@@ -108,7 +109,7 @@ render() {
       <div className="here">
         <Search searchRecipe={this.searchRecipe} />
         <div className="create_button_container">
-          <button onClick={this.testSMS}>test sms</button>
+          
           <Link to="/wizard/step1"><button className="create_recipe_button">Create new recipe</button></Link>
         </div>
         <div className="recipes_container">
