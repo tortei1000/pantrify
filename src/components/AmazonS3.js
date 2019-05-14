@@ -5,7 +5,7 @@ import Dropzone from 'react-dropzone';
 import { GridLoader } from 'react-spinners';
 import { connect } from 'react-redux'
 import { createRecipeImage } from '../redux/auth_reducer'
-import { SSL_OP_SINGLE_DH_USE } from 'constants';
+
 
 class AmazonS3 extends Component {
   constructor() {

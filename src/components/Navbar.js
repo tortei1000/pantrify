@@ -30,7 +30,7 @@ class Navbar extends Component {
             <nav>
                 <div className="app_name_logout_container">
                     <span className="app_name_container">PANTRIFY</span>
-                    <img src={logo} className="logo" />
+                    <img src={logo} className="logo" alt="error"/>
                     {username && <div>Welcome, {username}  <button className="logout_button" onClick={() => {
                         this.props.logout()
                         axios.get('/auth/logout').then(() => { this.props.history.push('/home') })
