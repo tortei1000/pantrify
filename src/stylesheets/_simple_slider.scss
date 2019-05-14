@@ -1,10 +1,40 @@
+.slider_container{
+  background-image: url('https://s3-us-west-1.amazonaws.com/pantrify2/dan-gold-265213-unsplash.jpg');
+  width: 100vw;
+  height: 75vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slider_container2{
+  background-image: url('https://s3-us-west-1.amazonaws.com/pantrify2/create1.jpeg');
+  width: 100vw;
+  
+  height: 75vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+.slider_container3{
+  background-image: url('https://s3-us-west-1.amazonaws.com/pantrify2/enjoy1.jpeg');
+  width: 100vw;
+  
+  height: 75vh;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+
 @media(min-width:600px){
-  .image_slide{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-   
+  .slider_container{
+   height: 73vh;
+  }
+  .slider_container2{
+    height: 73vh;
+  }
+  .slider_container3{
+    height: 73vh;
   }
   
   
