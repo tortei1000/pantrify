@@ -62,6 +62,7 @@ class Edit2 extends Component {
         <div className="buttons_container">
           <button onClick={this.addIngredientsToState}>add ingredients</button>
           <button onClick={this.editRecipe}>Done</button>
+        </div>
           {this.props.ingredients.map((ingredient) => {
             return (
               <>
@@ -77,7 +78,7 @@ class Edit2 extends Component {
               </>)
           })}
         </div>
-      </div>
+      
     )
   }
 }

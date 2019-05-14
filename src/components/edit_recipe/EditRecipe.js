@@ -12,7 +12,7 @@ class EditRecipe extends Component {
   render() {
     return (
       <div>
-        Edit the recipe
+        <p className="create_edit_header">Edit the recipe</p>
         <div className="buttons_container">
         <Link to="/"><button onClick={()=>this.props.refreshState()}>cancel</button></Link>
         </div>

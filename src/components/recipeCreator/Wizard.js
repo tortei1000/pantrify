@@ -11,7 +11,7 @@ class Wizard extends Component {
   render() {
     return (
       <div>
-        Create a new recipe!
+        <p className="create_edit_header">Create a new recipe!</p>
         <div className="buttons_container">
         <Link to="/"><button onClick={()=>this.props.refreshState()}>cancel</button></Link>
         </div>
