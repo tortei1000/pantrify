@@ -66,7 +66,7 @@ app.get('/api/signs3', (req, res) => {  //start of S3
 });  // end of S3
 
 app.get('/api/messages', async (req, res) => { //start of twilio
-  const { id } = req.session.user
+  const { id, phone } = req.session.user
   let todayDate = JSON.stringify(dateFns.format(new Date(), 'MM/DD/YYYY'))
   console.log(typeof todayDate)
   const db = req.app.get('db')
@@ -78,10 +78,10 @@ app.get('/api/messages', async (req, res) => { //start of twilio
       .create({
         body: `Reminder:  You have chosen to cook ${queryFound[0].recipe} today`,
         from: PHONENUMBER,
-        to: +13859559419
+        to: `+1${phone}`
       })
-      .then(message => console.log(message.sid));
-  }
+      .then(() => res.sendStatus(200));
+  }else {res.sendStatus(500)}
 
 })
  //end of twilio

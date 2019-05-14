@@ -16,7 +16,9 @@ class Recipes extends Component {
       recipes: [],
       user: '',
       recipeSelected: false,
-      selectedId: null
+      selectedId: null,
+      messageReceived: false,
+      count: 0
     }
   }
 
@@ -72,29 +74,44 @@ class Recipes extends Component {
     })
   }
 
-  testSMS =()=>{ //need to get a phone number
-    axios.get('/api/messages').then((res)=>{
-      console.log(res.data) //also needs to check and see if message was sent
-    })
+  
+  testSMS = async () => {
+    
+    console.log(this.state.messageReceived)
+    if (this.state.messageReceived === false) {
+      await axios.get('/api/messages')
+      this.setState({ messageReceived: true, count: this.state.count++ })
+      console.log(`this is count in the if`, this.state.count)
+      
+
+    }else{
+      this.setState({count: this.state.count++})
+      if(this.state.count === 10){this.setState({messageReceived:false, count: 0})}
+      
+      console.log(`this is count in the else`, this.state.count)
+    } 
+
+    setTimeout(this.testSMS(), 10000)
   }
 
-  render() {
-    let { recipes } = this.state
 
-    return (
-      
-      <div >{this.state.recipeSelected ?
-        <Recipe item={this.state.selectedId} index={1}
-          deleteRecipe={this.deleteRecipe}
-          toggleRecipeSelected={this.toggleRecipeSelected} /> :
+render() {
+  let { recipes } = this.state
 
-        <div className="here">
-          <Search searchRecipe={this.searchRecipe} />
-          <div className="create_button_container">
-            <button onClick={this.testSMS}>test sms</button>
-            <Link to="/wizard/step1"><button className="create_recipe_button">Create new recipe</button></Link>
-          </div>
-          <div className="recipes_container">
+  return (
+
+    <div >{this.state.recipeSelected ?
+      <Recipe item={this.state.selectedId} index={1}
+        deleteRecipe={this.deleteRecipe}
+        toggleRecipeSelected={this.toggleRecipeSelected} /> :
+
+      <div className="here">
+        <Search searchRecipe={this.searchRecipe} />
+        <div className="create_button_container">
+          <button onClick={this.testSMS}>test sms</button>
+          <Link to="/wizard/step1"><button className="create_recipe_button">Create new recipe</button></Link>
+        </div>
+        <div className="recipes_container">
           {recipes[0] ? recipes.map((item, index) => {
 
             return (
@@ -108,16 +125,16 @@ class Recipes extends Component {
                 <RecipeCard item={item} index={index} />
 
               </div>
-            ) 
-          }): null
+            )
+          }) : null
           } </div>
 
 
-        </div>}
+      </div>}
 
-      </div>
-    )
-  }
+    </div>
+  )
+}
 }
 const mapDispatchToProps = {
   updateUserId, updateUsername
