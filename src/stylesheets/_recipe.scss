@@ -75,3 +75,45 @@
     margin: 0;
   }
 }
+
+@media(min-width:1000px){
+  .subheader_container{
+    font-size: 25px;
+    margin: 0;
+  }
+
+  .recipe_container{
+    
+    max-width: 900px;
+    
+    
+    .title_container{
+      margin-top: 2em;
+    }
+    .image_container_in_recipe{
+      
+      float: left;
+      width: 40vw;
+      background-repeat: no-repeat;
+      height: 55vh;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      
+    }
+    .instruction_container{
+      
+      
+    }
+    .ingredients_container{
+      
+      .quantity_unit_container{
+        
+        .ingredient_unit_container{
+          
+
+        }
+      }
+    }
+  }
+}

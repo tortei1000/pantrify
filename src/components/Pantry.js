@@ -47,9 +47,10 @@ class Pantry extends Component {
         <>
           <div className="shopping_container">
             <p className="ingredient_name_container">{ingredient.name}</p>
-            <div className="quantity_unit_container"></div>
-            <p className="ingredient_quantity_container">{ingredient.quantity}</p>
-            <p className="ingredient_unit_container">{ingredient.unit}</p>
+            <div className="quantity_unit_container">
+              <p className="ingredient_quantity_container">{ingredient.quantity}</p>
+              <p className="ingredient_unit_container">{ingredient.unit}</p>
+            </div>
           </div>
           <div className="buttons_container">
             <button onClick={() => { this.removeFromPantry(ingredient.id) }}>remove item</button>
