@@ -1,4 +1,4 @@
-insert into users(username, password)
-values ($1,$2)
-returning username, password, id;
+insert into users(username, password, phone)
+values ($1,$2, $3)
+returning username, password, id, phone;
 

@@ -11,6 +11,7 @@ class NewUser extends Component {
         this.state = {
             username: '',
             password: '',
+            phone:'',
             loginError: false,
             loginErrorMessage: 'Username taken, please try a different one.'
         }
@@ -25,14 +26,14 @@ class NewUser extends Component {
 
     handleNewUserFormSubmit = async (e) => {
         e.preventDefault()
-        const { username, password } = this.state
+        const { username, password, phone } = this.state
         try {
-            const res = await axios.post('/auth/register', { username, password })
+            const res = await axios.post('/auth/register', { username, password, phone })
             this.props.updateUsername(username)
             this.props.updateUserId(res.data.user_id)
             this.props.history.push('/home')
         } catch (err) {
-            this.setState({ username: '', password: '', loginError: true })
+            this.setState({ username: '', password: '', phone: "", loginError: true })
         }
     }
 
@@ -53,6 +54,13 @@ class NewUser extends Component {
                         type='text'
                         name='password'
                         value={this.state.password}
+                        onChange={this.handleFormInputUpdate}
+                    />
+                    <div className="login_subheader">Phone</div>
+                    <input className="input_container"
+                        type='text'
+                        name='phone'
+                        value={this.state.phone}
                         onChange={this.handleFormInputUpdate}
                     />
                     <button className="login_button">Sign-up</button>

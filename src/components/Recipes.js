@@ -72,6 +72,12 @@ class Recipes extends Component {
     })
   }
 
+  testSMS =()=>{ //need to get a phone number
+    axios.get('/api/messages').then((res)=>{
+      console.log(res.data) //also needs to check and see if message was sent
+    })
+  }
+
   render() {
     let { recipes } = this.state
 
@@ -85,6 +91,7 @@ class Recipes extends Component {
         <div className="here">
           <Search searchRecipe={this.searchRecipe} />
           <div className="create_button_container">
+            <button onClick={this.testSMS}>test sms</button>
             <Link to="/wizard/step1"><button className="create_recipe_button">Create new recipe</button></Link>
           </div>
           <div className="recipes_container">

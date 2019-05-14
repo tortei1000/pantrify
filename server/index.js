@@ -7,12 +7,16 @@ const Auth_ctrl = require('./controllers/Auth_ctrl')
 const Recipes_ctrl = require('./controllers/Recipes_ctrl')
 const Calendar_ctrl = require('./controllers/Calendar_ctrl')
 const aws = require('aws-sdk');
+const dateFns = require('date-fns')
 
-const { SERVER_PORT, SESSION_SECRET, CONNECTION_STRING,  S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env
+
+const { PHONENUMBER, AUTHTOKEN, ACCOUNTSID, SERVER_PORT, SESSION_SECRET, CONNECTION_STRING, S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env
+
+const client = require('twilio')(ACCOUNTSID, AUTHTOKEN);
 
 app.use(express.json())
 
-app.use(session({  //how can I make sessions last through a refresh
+app.use(session({
   secret: SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
@@ -29,7 +33,7 @@ massive(CONNECTION_STRING).then((database) => {
   })
 })
 
-app.get('/api/signs3', (req, res) => {
+app.get('/api/signs3', (req, res) => {  //start of S3
   aws.config = {
     region: 'us-west-1',
     accessKeyId: AWS_ACCESS_KEY_ID,
@@ -59,7 +63,30 @@ app.get('/api/signs3', (req, res) => {
 
     return res.send(returnData);
   });
-});
+});  // end of S3
+
+app.get('/api/messages', async (req, res) => { //start of twilio
+  const { id } = req.session.user
+  let todayDate = JSON.stringify(dateFns.format(new Date(), 'MM/DD/YYYY'))
+  console.log(typeof todayDate)
+  const db = req.app.get('db')
+
+  let queryFound = await db.sms_query([id, todayDate])
+  console.log(queryFound)
+  if (queryFound) {
+    client.messages 
+      .create({
+        body: `Reminder:  You have chosen to cook ${queryFound[0].recipe} today`,
+        from: PHONENUMBER,
+        to: +13859559419
+      })
+      .then(message => console.log(message.sid));
+  }
+
+})
+ //end of twilio
+
+
 
 app.post('/auth/login', Auth_ctrl.login)
 app.post('/auth/register', Auth_ctrl.register)
