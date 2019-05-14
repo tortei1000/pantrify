@@ -55,15 +55,41 @@
 
 }
 
-.create_cancel_button{
-      font-size: 14px;
-      border: solid;
-      background: transparent;
-      border-radius: 5px;
-      color: $primary-font-color;
-      padding: 0.5em;
-      font-weight: 600;
+
+
+@media(min-width:600px){
+  .create_container{
+    font-size: 28px;
+    
+    .input_container_create{
       
-      
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 1em;
   
+      input{
+        font-size: 24px;
+        width: 60%;
+        
+      }
+      textarea{
+        font-size: 24px;
+      }
+      .amazon{
+        
+        
+      }
+    }
+  }
+  
+  .current_ingredients{
+    font-size: 30px;
+    
+    
+    
+  }
+    
+
+
 }
