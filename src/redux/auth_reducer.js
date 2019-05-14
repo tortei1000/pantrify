@@ -99,8 +99,7 @@ export default function reducer(state = initialState, action) {
       return { ...state, user_id: null, username: "", authenticated: false }
     case REFRESH_STATE:
       return {
-        ...state, title: '', instructions: '',
-        ingredients: { name: '', quantity: null, unit: '' }
+        ...state, title: '', instructions: '', ingredients: []
       }
     case CREATE_RECIPE_IMAGE:
       
