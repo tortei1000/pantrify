@@ -66,10 +66,10 @@ class AmazonS3 extends Component {
   render() {
     const { url, isUploading } = this.state;
     return (
-      <div className="App">
+      <div className="aws">
         <h2>Upload Image</h2>
         <h4>{(url)? <>Image Uploaded Succesfully</> : null}</h4>
-        <img src={url} alt="" width="300px" />
+        <img className='img_s3' src={url} alt="" width="300px" />
 
         <Dropzone
           onDropAccepted={this.getSignedRequest}
@@ -93,7 +93,7 @@ class AmazonS3 extends Component {
           onDrop={acceptedFiles => console.log(acceptedFiles)}>
           {({ getRootProps }) => (
             <div {...getRootProps()}>
-              {isUploading ? <GridLoader /> : <p>Drop File or Click Here</p>}
+              {isUploading ? <GridLoader /> : <p className="drop_file">Drop File Here</p>}
               
             </div>
           )}

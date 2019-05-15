@@ -68,7 +68,7 @@ app.get('/api/signs3', (req, res) => {  //start of S3
 });  // end of S3
 
 
-cron.schedule('0 10 * * *', async function () {
+cron.schedule('0 10 * * *', async function () { //cron starts for the sms twilo
   
   let todayDate = JSON.stringify(dateFns.format(new Date(), 'MM/DD/YYYY'))
   const db = app.get('db')

@@ -22,12 +22,35 @@
       height: 20vh;
       border: solid 1px gray;
     }
-    .amazon{
+    
+  }
+}
+  .amazon{
       
       height: 25vh;
     }
+
+  .aws{
+    
+    width: 400px;
+    text-align: center;
+    align-content: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
-}
+  .img_s3{
+    
+    width: 150px;
+  }
+  .drop_file{
+    font-size: 18px;
+    font-weight: 600;
+    border: dotted 2px black;
+    height: 150px;
+    width: 150px;
+  }
 
 .current_ingredients{
   justify-content: space-around;
