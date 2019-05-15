@@ -69,16 +69,16 @@ app.get('/api/signs3', (req, res) => {  //start of S3
 
 
 cron.schedule('0 10 * * *', async function () {
-  console.log(`cron runs every 10 seconds`)
+  
   let todayDate = JSON.stringify(dateFns.format(new Date(), 'MM/DD/YYYY'))
   const db = app.get('db')
   let userArray = await db.get_users()
-  console.log(userArray)
+  
   userArray.map(async(user) => {
     const { id, phone } = user
     let queryFound = await db.sms_query([id, todayDate])
     if (queryFound) {
-      console.log(`match was found expect a sms`)
+      
       client.messages
         .create({
           body: `Reminder:  You have chosen to cook ${queryFound[0].recipe} today`,
