@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import { Link, withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import { toast } from 'react-toastify';
 
 
 
@@ -25,6 +26,7 @@ class Recipe extends Component {
   sendToList = () => {
     axios.put(`/api/ingredients/${this.props.item.id}`).then((res) => {
       console.log(res.status)
+      toast.success(`You added these ingredients to your shopping list`)
     })
   }
 

@@ -15,11 +15,11 @@ export default class ToggleColor extends Component {
 
   render() {
 
-    console.log(this.props.filter)
+    
     return (
       <>
         {this.props.filter.map((meal, index) => {
-          console.log(meal)
+          
           return <>
             <p className="recipe_title"
               key={index} >{meal.recipe}

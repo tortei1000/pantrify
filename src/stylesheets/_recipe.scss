@@ -1,3 +1,5 @@
+@import 'variable';
+
 .recipe_container{
   
   max-width: 85%;
@@ -90,15 +92,12 @@
     .title_container{
       margin-top: 2em;
     }
-    .image_container_in_recipe{
+    .image_container_in_recipe{ @include imager(center);
       
       float: left;
       width: 40vw;
-      background-repeat: no-repeat;
       height: 55vh;
-      background-repeat: no-repeat;
-      background-position: center;
-      background-size: cover;
+      
       
     }
     .instruction_container{
@@ -117,3 +116,4 @@
     }
   }
 }
+

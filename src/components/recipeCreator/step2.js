@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+
 import { connect } from 'react-redux'
 import axios from 'axios';
 import { addIngredients, refreshState } from "../../redux/auth_reducer"
+import { toast } from 'react-toastify';
 
 class Step2 extends Component {
   constructor() {
@@ -11,7 +12,8 @@ class Step2 extends Component {
     this.state = {
       name: '',
       quantity: 0,
-      unit: ''
+      unit: '',
+      
 
     }
   }
@@ -32,6 +34,10 @@ class Step2 extends Component {
     const { title, instructions, image, ingredients } = this.props
     await axios.post('/api/recipes', { title, instructions, image, ingredients })
     this.props.refreshState()
+    toast.success(`You have created ${title} recipe`)
+    
+    this.props.history.push('/home')
+    
   }
 
   handleChange = (e) => {
@@ -61,7 +67,7 @@ class Step2 extends Component {
         </div>
         <div className="buttons_container">
           <button onClick={this.addIngredientsToState}>add ingredients</button>
-          <Link to="/home"><button onClick={this.createRecipe}>Done</button></Link>
+          <button onClick={this.createRecipe}>Done</button>
         </div>
           <p>The recipe currently has this ingredients:</p>
         {this.props.ingredients.map((ingredient) => {

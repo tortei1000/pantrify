@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios';
 import { updateUsername } from "../redux/auth_reducer"
+import { toast } from 'react-toastify';
 
 class ShoppingList extends Component {
 
@@ -22,6 +23,7 @@ class ShoppingList extends Component {
   }
   getIngredients = () => {
     axios.get('/api/ingredients').then((result) => {
+      
       this.setState({ ingredients: result.data })
     })
   }
@@ -31,14 +33,16 @@ class ShoppingList extends Component {
       console.log(res.status)
     })
     this.getIngredients()
+    
   }
 
   addToPantry = (id) => {
     axios.put(`/api/addtopantry/${id}`).then((res) => {
-      console.log(res.status)
+      console.log(res.status, id)
     })
     this.removeFromList(id)
     this.getIngredients(id)
+    toast.success(`You have added this ingredient to your pantry`)
   }
 
   render() {

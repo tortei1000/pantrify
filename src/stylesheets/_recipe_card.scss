@@ -13,12 +13,10 @@
     font-weight: 400;
     font-family: $fancy-font;
   }
-  .image_container{
+  .image_container{ @include imager(center);
     width: 300px;
     height: 250px;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
+    
   }
   
 }

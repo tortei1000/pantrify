@@ -25,7 +25,7 @@ export default class HamburgerMenu extends Component {
 
   navigationLinks() {
     return [
-      <ul className="hamburger_container">
+      <ul key={10} className="hamburger_container">
         
         <li className="link_container" key={1}><Link to='/home' className="link_text">MY RECIPES</Link></li>
         <li className="link_container" key={2}><Link to='/shoppinglist' className="link_text">SHOPPING LIST</Link></li>
@@ -52,8 +52,8 @@ export default class HamburgerMenu extends Component {
   renderNavigation() {
     if(this.state.windowWidth <= 1080) {
       return [
-        <div className="mobile_nav">
-          <p onClick={this.handleNavClick.bind(this)}><i class="material-icons">view_headline</i></p>
+        <div key={6} className="mobile_nav">
+          <p  key={8} onClick={this.handleNavClick.bind(this)}><i key={9} className="material-icons">view_headline</i></p>
           {this.renderMobileNav()}
         </div>
       ];

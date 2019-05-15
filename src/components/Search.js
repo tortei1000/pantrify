@@ -33,7 +33,7 @@ export default class Search extends Component {
             this.props.searchRecipe(this.state.filterText)}}} 
           onChange={(e)=>this.handleChange(e)} placeholder="Search Your Recipes" />
           
-          <i class="fas fa-search" onClick={()=>this.props.searchRecipe(this.state.filterText)}></i>
+          <i className="fas fa-search" onClick={()=>this.props.searchRecipe(this.state.filterText)}></i>
           
         </div>
         

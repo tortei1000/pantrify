@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { updateUserId, updateUsername } from '../redux/auth_reducer'
 import RecipeCard from './RecipeCard'
 import Search from './Search';
+import { toast } from 'react-toastify';
 
 
 
@@ -17,8 +18,9 @@ class Recipes extends Component {
       user: '',
       recipeSelected: false,
       selectedId: null,
-      messageReceived: false,
-      count: 0
+      messageReceived: true,
+      count: 0,
+
     }
   }
 
@@ -28,10 +30,11 @@ class Recipes extends Component {
   }
 
   getRecipes = () => {
-    console.log(`get recipes is running`)
+    
     axios.get('/api/recipes').then((res) => {
       this.setState({
-        recipes: res.data
+        recipes: res.data,
+        
       })
 
     })
@@ -42,8 +45,8 @@ class Recipes extends Component {
     axios.get(`/api/recipes/?title=${text}`).then(res => {
 
       this.setState({
-
-        recipes: res.data
+        recipes: res.data,
+        
       })
     }).catch(err => console.log("error", err))
 
@@ -52,8 +55,10 @@ class Recipes extends Component {
   deleteRecipe = (item) => {
     axios.delete(`/api/recipes/${item.id}`).then(res => {
       this.setState({
-        recipes: res.data
+        recipes: res.data,
+        state: this.state
       })
+      toast.success(`You have deleted ${item.title} from your collection`)
     })
     this.getRecipes()
     this.setState({
@@ -64,7 +69,8 @@ class Recipes extends Component {
   updateRecipe = (item) => {
     axios.put(`/api/recipes/${item.id}`).then(res => {
       this.setState({
-        recipes: res.data
+        recipes: res.data,
+        state: this.state
       })
     })
   }
@@ -75,67 +81,64 @@ class Recipes extends Component {
     })
   }
 
-  
+
   testSMS = async () => {
+
     
-    console.log(this.state.messageReceived)
     if (this.state.messageReceived === false) {
       await axios.get('/api/messages')
       this.setState({ messageReceived: true, count: ++this.state.count })
-      console.log(`this is count in the if`, this.state.count)
       
+    } else {
+      this.setState({ count: ++this.state.count })
+      if (this.state.count === 24) { this.setState({ messageReceived: false, count: 0 }) }
 
-    }else{
-      this.setState({count: ++this.state.count})
-      if(this.state.count === 24){this.setState({messageReceived:false, count: 0})}
-      
-      console.log(`this is count in the else`, this.state.count)
-    } 
+    }
 
-    setTimeout(this.testSMS, 1000*60*60)
+    setTimeout(this.testSMS, 1000 * 60 * 60)
   }
 
 
-render() {
-  let { recipes } = this.state
+  render() {
+    let { recipes } = this.state
 
-  return (
+    return (
 
-    <div >{this.state.recipeSelected ?
-      <Recipe item={this.state.selectedId} index={1}
-        deleteRecipe={this.deleteRecipe}
-        toggleRecipeSelected={this.toggleRecipeSelected} /> :
+      <div >{this.state.recipeSelected ?
+        <Recipe item={this.state.selectedId} index={1}
+          deleteRecipe={this.deleteRecipe}
+          toggleRecipeSelected={this.toggleRecipeSelected} /> :
 
-      <div className="here">
-        <Search searchRecipe={this.searchRecipe} />
-        <div className="create_button_container">
-          
-          <Link to="/wizard/step1"><button className="create_recipe_button">Create new recipe</button></Link>
-        </div>
-        <div className="recipes_container">
-          {recipes[0] ? recipes.map((item, index) => {
+        <div className="here">
+          <Search searchRecipe={this.searchRecipe} />
+          <div className="create_button_container">
 
-            return (
+            <Link to="/wizard/step1"><button className="create_recipe_button">Create new recipe</button></Link>
+          </div>
+          <div className="recipes_container">
+            {recipes[0] ? recipes.map((item, index) => {
 
-              <div key={index} onClick={() => {
-                this.setState({
-                  recipeSelected: true,
-                  selectedId: item
-                })
-              }}>
-                <RecipeCard item={item} index={index} />
+              return (
 
-              </div>
-            )
-          }) : null
-          } </div>
+                <div key={index} onClick={() => {
+                  this.setState({
+                    recipeSelected: true,
+                    selectedId: item
+                  })
+                }}>
+                  <RecipeCard item={item} index={index} />
+
+                </div>
+              )
+            }) : null
+            } </div>
 
 
-      </div>}
+        </div>}
 
-    </div>
-  )
-}
+      </div>
+    )
+  }
 }
 const mapDispatchToProps = {
   updateUserId, updateUsername

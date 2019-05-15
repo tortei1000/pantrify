@@ -30,7 +30,7 @@ class Edit2 extends Component {
   editRecipe = () => {
     const { title, instructions, ingredients } = this.props
     axios.put(`/api/recipes/${this.props.match.params.id}`, { title, instructions, ingredients }).then(() => {
-      this.props.refreshState()  //why is this not working?
+      this.props.refreshState()  
       this.props.history.push('/home')
     })
   }

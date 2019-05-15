@@ -1,3 +1,9 @@
 $font-stack : 'M PLUS 1p', sans-serif;
 $fancy-font: 'PT Sans', sans-serif;
-$primary-font-color: #c5c5c5
+$primary-font-color: #c5c5c5;
+
+@mixin imager($position) {
+  background-repeat: no-repeat;
+  background-position: $position;
+  background-size: cover;
+}

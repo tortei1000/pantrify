@@ -13,7 +13,7 @@ class Mealer extends Component {
   }
 
   componentDidMount() {
-    console.log(`I m running yo`)
+    
     axios.get('/auth/users').then((res) => {
 
       this.props.updateUsername(res.data.username)
@@ -35,7 +35,7 @@ class Mealer extends Component {
   render() {
     const { allRecipes } = this.state
     const { day } = this.props
-    console.log(allRecipes)
+    
 
 
     return (

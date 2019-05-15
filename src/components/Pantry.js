@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import axios from 'axios';
 import { updateUsername } from "../redux/auth_reducer"
+import { toast } from 'react-toastify';
 
 class Pantry extends Component {
 
@@ -37,15 +38,16 @@ class Pantry extends Component {
     axios.put(`/api/removepantry/${id}`).then((res) => {
       console.log(res.status)
     })
+    toast.success(`Removed ingredient from your pantry.`)
     this.getPantry()
   }
 
   render() {
     const { ingredients } = this.state
-    const list = ingredients.map((ingredient) => {
+    const list = ingredients.map((ingredient, index) => {
       return (
         <>
-          <div className="shopping_container">
+          <div key={index} className="shopping_container">
             <p className="ingredient_name_container">{ingredient.name}</p>
             <div className="quantity_unit_container">
               <p className="ingredient_quantity_container">{ingredient.quantity}</p>

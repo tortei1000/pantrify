@@ -8,6 +8,8 @@ import { updateUsername } from "../redux/auth_reducer"
 import axios from 'axios'
 import ToggleColor from './ToggleColor'
 import PrintThisComponent from './PrintThisComponent'
+import { toast } from "react-toastify";
+
 const isSameDay = require('date-fns/is_same_day')
 
 
@@ -134,6 +136,7 @@ class Calendar extends React.Component {
           />
         ) : rows}
         <PrintThisComponent />
+        
       </div>
     )
   }
@@ -142,9 +145,11 @@ class Calendar extends React.Component {
 
   saveToDb = (planMeal) => {
     axios.post('/api/calendar', planMeal).then((res) => {
+      
       this.setState({
         meals: [...this.state.meals, res.data]
       })
+      toast.success(`you have selected to cook ${res.data.recipe} on ${res.data.meal_day}`)
     })
   }
 
@@ -157,9 +162,9 @@ class Calendar extends React.Component {
   }
 
   removeRecipe = (id) => {
-    console.log(`this is before the axios`, id)
+    
     axios.delete(`/api/calendar/${id}`).then(() => {
-      console.log(`meal removed from calendar`)
+     
       this.getCalendarMeals()
     })
   }
