@@ -49,7 +49,7 @@ class ShoppingList extends Component {
     const { ingredients } = this.state
     const list = ingredients.map((ingredient) => {
       return (
-        <>
+        <div className="grid_container">
           <div className="shopping_container">
             <p className="ingredient_name_container">{ingredient.name}</p>
             <div className="quantity_unit_container">
@@ -62,7 +62,7 @@ class ShoppingList extends Component {
             <button onClick={() => { this.addToPantry(ingredient.id) }}>add to pantry</button>
             <button onClick={() => { this.removeFromList(ingredient.id) }}>remove from list</button>
           </div>
-        </>
+        </div>
       )
     })
     return (

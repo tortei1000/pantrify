@@ -8,6 +8,8 @@ const Recipes_ctrl = require('./controllers/Recipes_ctrl')
 const Calendar_ctrl = require('./controllers/Calendar_ctrl')
 const aws = require('aws-sdk');
 const dateFns = require('date-fns')
+const cron = require('node-cron')
+const fs = require('fs')
 
 
 const { PHONENUMBER, AUTHTOKEN, ACCOUNTSID, SERVER_PORT, SESSION_SECRET, CONNECTION_STRING, S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env
@@ -65,26 +67,34 @@ app.get('/api/signs3', (req, res) => {  //start of S3
   });
 });  // end of S3
 
-app.get('/api/messages', async (req, res) => { //start of twilio
-  const { id, phone } = req.session.user
+
+cron.schedule('0 10 * * *', async function () {
+  console.log(`cron runs every 10 seconds`)
   let todayDate = JSON.stringify(dateFns.format(new Date(), 'MM/DD/YYYY'))
-  console.log(typeof todayDate)
-  const db = req.app.get('db')
-
-  let queryFound = await db.sms_query([id, todayDate])
-  console.log(queryFound)
-  if (queryFound) {
-    client.messages 
-      .create({
-        body: `Reminder:  You have chosen to cook ${queryFound[0].recipe} today`,
-        from: PHONENUMBER,
-        to: `+1${phone}`
-      })
-      .then(() => res.sendStatus(200));
-  }else {res.sendStatus(500)}
-
+  const db = app.get('db')
+  let userArray = await db.get_users()
+  console.log(userArray)
+  userArray.map(async(user) => {
+    const { id, phone } = user
+    let queryFound = await db.sms_query([id, todayDate])
+    if (queryFound) {
+      console.log(`match was found expect a sms`)
+      client.messages
+        .create({
+          body: `Reminder:  You have chosen to cook ${queryFound[0].recipe} today`,
+          from: PHONENUMBER,
+          to: `+1${phone}`
+        })
+        .then(() => res.sendStatus(200));
+    } else { res.sendStatus(500) }
+  })
+  
 })
- //end of twilio
+
+
+
+
+//end of twilio
 
 
 

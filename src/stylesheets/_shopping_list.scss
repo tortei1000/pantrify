@@ -1,14 +1,15 @@
 @import 'variable';
+  
+  
+
   .shopping_container{
-    
-    display: flex;
+    display: flex;    
     justify-content: space-around;
     padding: 0.5em;
     font-weight: 800;
     
     .ingredient_name_container{
      
-      
     }
     .quantity_unit_container{
       display: flex;
@@ -29,9 +30,9 @@
     justify-content: space-around;
     button{
       font-size: 14px;
-      border: solid;
+      border: solid 1px;
       background: transparent;
-      border-radius: 5px;
+      border-radius: 3px;
       color: $primary-font-color;
       padding: 0.5em;
       font-weight: 600;

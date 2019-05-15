@@ -18,15 +18,14 @@ class Recipes extends Component {
       user: '',
       recipeSelected: false,
       selectedId: null,
-      messageReceived: true,
-      count: 0,
+      
 
     }
   }
 
   componentDidMount() {
     this.getRecipes()
-    this.testSMS()
+    
   }
 
   getRecipes = () => {
@@ -82,21 +81,7 @@ class Recipes extends Component {
   }
 
 
-  testSMS = async () => {
-
-    
-    if (this.state.messageReceived === false) {
-      await axios.get('/api/messages')
-      this.setState({ messageReceived: true, count: ++this.state.count })
-      
-    } else {
-      this.setState({ count: ++this.state.count })
-      if (this.state.count === 24) { this.setState({ messageReceived: false, count: 0 }) }
-
-    }
-
-    setTimeout(this.testSMS, 1000 * 60 * 60)
-  }
+  
 
 
   render() {
