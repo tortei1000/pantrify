@@ -20,6 +20,7 @@ class Calendar extends React.Component {
     meals: [],
     isClicked: false,
     isInPantry: false,
+    resizeScreen: 0
 
   };
 
@@ -28,7 +29,15 @@ class Calendar extends React.Component {
       this.props.updateUsername(res.data.username)
     }).catch((err) => { console.log(err) })
     this.getCalendarMeals()
+    window.addEventListener('resize', this.resize.bind(this))
+    this.resize()
+  }
 
+  resize() {
+    console.log(window.innerWidth)
+    if (window.innerWidth > 1000) {
+      this.setState({ resizeScreen: true })
+    } else { this.setState({ resizeScreen: false }) }
   }
 
   renderHeader() {
@@ -103,7 +112,17 @@ class Calendar extends React.Component {
                 : dateFns.isSameDay(day, selectedDate) ? "selected" : ""
               }`}
             key={day}
-            onDoubleClick={() => this.onDateClick(dateFns.parse(cloneDay))}
+            onClick={() => {
+              if (this.state.resizeScreen === false) {
+                return this.onDateClick(dateFns.parse(cloneDay))
+              } else { return null }
+            }}
+            onDoubleClick={() => {
+              if (this.state.resizeScreen === true) {
+                return this.onDateClick(dateFns.parse(cloneDay))
+              } else { return null }
+            }
+            }
 
           >
             {(filter.length > 0) ? (<ToggleColor
@@ -136,7 +155,7 @@ class Calendar extends React.Component {
           />
         ) : rows}
         <PrintThisComponent />
-        
+
       </div>
     )
   }
@@ -145,7 +164,7 @@ class Calendar extends React.Component {
 
   saveToDb = (planMeal) => {
     axios.post('/api/calendar', planMeal).then((res) => {
-      
+
       this.setState({
         meals: [...this.state.meals, res.data]
       })
@@ -162,9 +181,9 @@ class Calendar extends React.Component {
   }
 
   removeRecipe = (id) => {
-    
+
     axios.delete(`/api/calendar/${id}`).then(() => {
-     
+
       this.getCalendarMeals()
     })
   }
@@ -180,7 +199,7 @@ class Calendar extends React.Component {
     const { title: recipe } = value
     let planMeal = { meal_day, recipe }
     this.saveToDb(planMeal)
-    
+
 
     this.setState({
       isClicked: !this.state.isClicked
