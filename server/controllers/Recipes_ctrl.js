@@ -38,12 +38,14 @@ module.exports = {
 
 
     db.create_recipe([id, title, instructions, image]).then((id_array) => {
-      console.log(ingredients)
+      console.log(`please look it here `, id)
       ingredients.forEach(ingredient => {
         const { name, quantity, unit } = ingredient
         const myId = id_array[0].id
         db.add_ingredients([myId, name, quantity, unit])
       })
+      const myId = id_array[0].id
+      db.ing_count_updater(myId)
       res.sendStatus(200)
     })
     console.log(`create recipe fired`)
