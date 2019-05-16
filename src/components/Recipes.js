@@ -59,7 +59,7 @@ class Recipes extends Component {
       })
       toast.success(`You have deleted ${item.title} from your collection`)
     })
-    this.getRecipes()
+    // this.getRecipes()
     this.setState({
       recipeSelected: false
     })

@@ -58,7 +58,10 @@ module.exports = {
     console.log("look at me", req.params)
     const { id } = req.params
     const { id: user_id } = req.session.user
-    db.delete_recipe([id, user_id]).then((recipe) => res.status(200).send(recipe))
+    
+    db.delete_recipe([id, user_id]).then((recipe) => {
+      console.log(recipe) 
+      res.status(200).send(recipe)})
 
 
   },
@@ -79,6 +82,7 @@ module.exports = {
         })
 
       })
+      db.ing_count_updater(id)
       res.sendStatus(200)
     })
 
