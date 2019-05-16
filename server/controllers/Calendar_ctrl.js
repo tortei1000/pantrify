@@ -39,28 +39,33 @@ module.exports = {
     })
   },
 
+
+
   pantryCheck: async (req, res) => {
 
-    const { id } = req.session.user  //I know how many ingredients in a given recipe, I also know if the recipe is all in pantry
-    const db = req.app.get('db')  //by calculating the difference between items in pantry to all ingredients in recipe
-    let itemsInPantry = await db.items_in_pantry(id) //I have recipe id in items in pantry but not in all ingredients
-    console.log(itemsInPantry) //
-    let allIngredientsInRecipe = []
+    const { id } = req.session.user
+    const db = req.app.get('db')
+    let itemsInPantry = await db.items_in_pantry(id)
+    console.log(itemsInPantry)
 
-    itemsInPantry.map(async (item, index) => {
-      let ingredientCount = await db.all_ingredients_in_recipe(item.id)
-      let ingredientRequired = await db.require_ingredients(item.id)
-      if (ingredientCount[index] === ingredientRequired[index]) {
-        return allIngredientsInRecipe.push(true)
-      }
-      console.log(allIngredientsInRecipe)
+    itemsInPantry.map((item) => {
+      db.ing_count_updater(item.id)
     })
-      // 
-      // let itemsNotInPantry = await db.items_not_in_pantry(id)
+
+    Promise.all(itemsInPantry.map((item) => {
+      return db.ingredient_count(item.id)
+    })).then((arr) => {
+
+      res.status(200).send(itemsInPantry.filter((recipe, index) => {
+        console.log(arr[index][0].count, recipe)
+        return +arr[index][0].count === recipe.ing_count
+
+      }))
+    })
 
 
-    
-      res.send(allIngredientsInRecipe)
-    
+
+
+
   }
 }

@@ -19,8 +19,9 @@ class Calendar extends React.Component {
     selectedDate: new Date(),
     meals: [],
     isClicked: false,
-    isInPantry: false,
-    resizeScreen: 0
+    isInPantry: [],
+    resizeScreen: 0,
+    
 
   };
 
@@ -31,6 +32,7 @@ class Calendar extends React.Component {
     this.getCalendarMeals()
     window.addEventListener('resize', this.resize.bind(this))
     this.resize()
+    this.pantryChecker()
   }
 
   resize() {
@@ -129,7 +131,8 @@ class Calendar extends React.Component {
               meals={this.state.meals}
               filter={filter}
               removeRecipe={this.removeRecipe}
-              pantryCheck={this.pantryCheck} />
+              pantryChecker={this.pantryCheck}
+              isInPantry={this.state.isInPantry} />
             ) : null}
             <span className="number">{formattedDate}</span>
             <span className="bg">{formattedDate}</span>
@@ -163,7 +166,7 @@ class Calendar extends React.Component {
 
 
   saveToDb = (planMeal) => {
-   
+    
     axios.post('/api/calendar', planMeal).then((res) => {
 
       this.setState({
@@ -171,11 +174,16 @@ class Calendar extends React.Component {
       })
       toast.success(`you have selected to cook ${res.data.recipe} on ${res.data.meal_day}`)
     })
-    this.pantryChecker()
+    
   }
 
-  pantryChecker = () => {
-    axios.get('/api/pantryCheck').then((res)=>{console.log(res.data)})
+  pantryChecker = async() => {
+    
+    await axios.get('/api/pantryCheck').then((res)=>{
+      console.log(res.data)
+      this.setState({isInPantry:res.data})  
+      
+    })
   }
 
   selectedRecipe = (meal_day, recipe, recipe_id) => {
