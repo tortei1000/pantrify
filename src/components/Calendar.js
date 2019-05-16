@@ -163,6 +163,7 @@ class Calendar extends React.Component {
 
 
   saveToDb = (planMeal) => {
+   
     axios.post('/api/calendar', planMeal).then((res) => {
 
       this.setState({
@@ -170,8 +171,26 @@ class Calendar extends React.Component {
       })
       toast.success(`you have selected to cook ${res.data.recipe} on ${res.data.meal_day}`)
     })
+    this.pantryChecker()
   }
 
+  pantryChecker = () => {
+    axios.get('/api/pantryCheck').then((res)=>{console.log(res.data)})
+  }
+
+  selectedRecipe = (meal_day, recipe, recipe_id) => {
+    
+     
+    let planMeal = { meal_day, recipe, recipe_id }
+    this.saveToDb(planMeal)
+
+
+    this.setState({
+      isClicked: !this.state.isClicked
+    })
+
+
+  }
   getCalendarMeals = () => {
     axios.get('/api/calendar').then((res) => {
       this.setState({
@@ -195,18 +214,6 @@ class Calendar extends React.Component {
     });
   };
 
-  selectedRecipe = (meal_day, value) => {
-    const { title: recipe } = value
-    let planMeal = { meal_day, recipe }
-    this.saveToDb(planMeal)
-
-
-    this.setState({
-      isClicked: !this.state.isClicked
-    })
-
-
-  }
 
   nextMonth = () => {
     this.setState({

@@ -24,11 +24,11 @@ class Mealer extends Component {
   getRecipes = () => {
 
     axios.get('/api/recipes').then((res) => {
+      
       this.setState({
         allRecipes: res.data
-
-      })
-
+               
+      }) 
     })
   }
 
@@ -48,11 +48,11 @@ class Mealer extends Component {
         </div>
 
         {allRecipes.map((recipe, index) => {
-
+          console.log(`look at me ${recipe.id}`)
           return (
             <div className="recipe_button_container">
 
-              <li onClick={() => this.props.selectedRecipe(day, recipe)} key={index}>{recipe.title}</li>
+              <li onClick={() => this.props.selectedRecipe(day, recipe.title, recipe.id)} key={index}>{recipe.title}</li>
             </div>
           )
 
