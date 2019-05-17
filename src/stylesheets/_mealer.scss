@@ -4,18 +4,30 @@
   display: flex;
   justify-content: space-evenly;
   padding: .5em;
+ 
   
   .header_mealer{
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
     
   }
   .day{
-    font-size: 22px;
+    font-size: 18px;
+  }
+}
+
+.color_container{
+  
+  margin-left: 1em;
+  
+  span{
+    margin: 3px;
   }
 }
 
 .recipe_button_container{
+  margin-left: 1.5em;
+  
   list-style: none;
   padding: 0.5em;
   font-family: $font-stack;

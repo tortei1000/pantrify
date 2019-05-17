@@ -41,15 +41,17 @@ class Mealer extends Component {
     return (
       <>
         <div className="header_day_container">
-          <div className="header_mealer">Choose the recipe to cook on:</div>
+          <div className="header_mealer">Click on the recipe name to choose the recipe to cook on:</div>
           <div className="day">
             {this.props.day.toUTCString()}
           </div>
         </div>
-        <p>if your recipe is <p style={{ color:"green" }}>green</p>
-        <p>you have all the ingredients necessary to cook it in
-          your pantry, otherwise the recipe will be </p>
-        <p style={{ color:'red' }}>red.</p></p>
+        <p className='color_container'><span>if your recipe is </span>
+          <span style={{ color: "green", fontWeight:600 }}> green</span>
+          <span>you have all the ingredients necessary to cook it in
+          your pantry, otherwise the recipe will be </span>
+          <span style={{ color: 'red', fontWeight:400 }}> red.</span>
+        </p>
 
 
         {this.props.isInPantry && allRecipes.map((recipe, index) => {
@@ -58,7 +60,7 @@ class Mealer extends Component {
           return (
             <div className="recipe_button_container">
 
-              <li style={green ? { color: "green" } : { color: "red" }} onClick={() => this.props.selectedRecipe(day, recipe.title, recipe.id)} key={index}>{recipe.title}</li>
+              <li style={green ? { color: "green", fontWeight:600 } : { color: "red" }} onClick={() => this.props.selectedRecipe(day, recipe.title, recipe.id)} key={index}>{recipe.title}</li>
             </div>
           )
 
