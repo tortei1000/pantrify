@@ -24,6 +24,9 @@
   background-position: center;
   background-size: cover;
 }
+.notSlider{
+  display: none;
+}
 
 
 @media(min-width:600px){
@@ -35,6 +38,18 @@
   }
   .slider_container3{
     height: 73vh;
+  }
+  .notSlider{
+    display: none;
+  }
+}
+
+@media(min-width:1000px){
+  .toggleSlider{
+    display: none;
+  }
+  .notSlider{
+    display: flex;
   }
 }
 

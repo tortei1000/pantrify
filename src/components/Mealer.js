@@ -3,6 +3,7 @@ import axios from 'axios'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { updateUsername } from "../redux/auth_reducer"
+import {format} from 'date-fns'
 
 class Mealer extends Component {
   constructor() {
@@ -43,7 +44,8 @@ class Mealer extends Component {
         <div className="header_day_container">
           <div className="header_mealer">Click on the recipe name to choose the recipe to cook on:</div>
           <div className="day">
-            {this.props.day.toUTCString()}
+            {format(this.props.day, 'dddd, MMMM Do, YYYY')}
+            
           </div>
         </div>
         <p className='color_container'><span>if your recipe is </span>

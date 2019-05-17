@@ -56,7 +56,8 @@ class NewUser extends Component {
                         value={this.state.password}
                         onChange={this.handleFormInputUpdate}
                     />
-                    <div className="login_subheader">Phone</div>
+                    <div className="login_subheader">Phone
+                    <span style={{marginLeft:"15px", fontSize: '12px'}}>*only necessary for daily reminder</span></div>
                     <input className="input_container"
                         type='text'
                         name='phone'

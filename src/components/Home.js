@@ -36,10 +36,16 @@ class Home extends Component {
             
           </div>
         ) : (
-            <div >
-
+          <>
+            <div className='toggleSlider'>
               <SimpleSlider />
             </div>
+            <div className="notSlider">
+              <div className='slider_container'></div>
+              <div className='slider_container2'></div>
+              <div className='slider_container3'></div>
+            </div>
+          </>
           )}
 
       </div>
