@@ -1,28 +1,16 @@
+@import 'variable';
+
 .slider_container{
   background-image: url('https://s3-us-west-1.amazonaws.com/pantrify2/dan-gold-265213-unsplash.jpg');
-  width: 100vw;
-  height: 75vh;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  @extend %slider_shared ;
 }
 .slider_container2{
   background-image: url('https://s3-us-west-1.amazonaws.com/pantrify2/create1.jpeg');
-  width: 100vw;
-  
-  height: 75vh;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  @extend %slider_shared ;
 }
 .slider_container3{
   background-image: url('https://s3-us-west-1.amazonaws.com/pantrify2/enjoy1.jpeg');
-  width: 100vw;
-  
-  height: 75vh;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  @extend %slider_shared ;
 }
 .notSlider{
   display: none;

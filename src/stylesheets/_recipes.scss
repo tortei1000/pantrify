@@ -1,13 +1,23 @@
+@import 'variable';
+
 .create_recipe_button{
   font-size: 20px;
-  background: white;
-  color: black;
+  background: transparent;
   padding: 0.5em;
+  box-shadow: 1px 3px;
+  border-radius: 3px;
+  color: black;
 }
+
 .create_recipe_button:hover{
-  background: black;
+  background: $primary-font-color;
   color: white;
+  transition: 500ms;
+  
+  
 }
+
+
 
 .header_title{
   text-align: center;
@@ -19,6 +29,8 @@
   justify-content: center;
   margin-top: 0.5em;
   
+  
+  
 }
 
 @media(min-width:600px){
@@ -26,7 +38,9 @@
     font-size: 40px;
   }
   .create_recipe_button{
-    font-size: 30px;
+    font-size: 24px;
+    background: transparent;
+    
   }
   .recipes_container{
     
