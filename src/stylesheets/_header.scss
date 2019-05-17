@@ -1,5 +1,7 @@
 @import 'variable';
-
+.logo {
+  display: none;
+}
 .login_register_container{
   list-style: none;
   font-size: 25px;
@@ -7,8 +9,9 @@
   justify-content: space-around;
   font-family: $font-stack;
   padding: 0;
-  
-  
+  margin: 0;
+  margin-bottom: 0.5em;
+
   .login_container{
     .login_text{
       text-decoration: none;
@@ -35,20 +38,19 @@
   font-weight: 800;
   font-family: $fancy-font;
   
+  
 }
 
 .app_name_logout_container {
   display: flex;
   justify-content: space-between;
-  margin: 0.5em;
+  margin: 0;
 }
 
 .logout_button{
   font-size: 15px;
 }
-.logo {
-  display: none;
-}
+
 @media(min-width:600px){
   .login_register_container{
     
@@ -62,6 +64,8 @@
   .logo{
     display: block;
     height: 15vh;
+    position: relative;
+    top: -40px;
   }
   .app_name_logout_container{
     height: 10vh;
@@ -72,7 +76,7 @@
   .logo{
     
     position: relative;
-    top: 0px;
+    top: -20px;
     
   }
 }
