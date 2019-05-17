@@ -18,7 +18,8 @@
       color: $primary-font-color;
     }
     .login_text:hover{
-      color: black 
+      color: black ;
+      transition: 600ms;
     }
   }
   .register_container{
@@ -27,7 +28,8 @@
       color: $primary-font-color;
     }
     .register_text:hover{
-    color: black 
+    color: black ;
+    transition: 600ms;
   } 
 }
 
