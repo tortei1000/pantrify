@@ -13,7 +13,7 @@ class Mealer extends Component {
   }
 
   componentDidMount() {
-    
+
     axios.get('/auth/users').then((res) => {
 
       this.props.updateUsername(res.data.username)
@@ -24,18 +24,18 @@ class Mealer extends Component {
   getRecipes = () => {
 
     axios.get('/api/recipes').then((res) => {
-      
+
       this.setState({
         allRecipes: res.data
-               
-      }) 
+
+      })
     })
   }
 
   render() {
     const { allRecipes } = this.state
     const { day } = this.props
-    
+    let idArray = this.props.isInPantry.map((item) => { return item.id })
 
 
     return (
@@ -46,20 +46,26 @@ class Mealer extends Component {
             {this.props.day.toUTCString()}
           </div>
         </div>
+        <p>if your recipe is <p style={{ color:"green" }}>green</p>
+        <p>you have all the ingredients necessary to cook it in
+          your pantry, otherwise the recipe will be </p>
+        <p style={{ color:'red' }}>red.</p></p>
 
-        {allRecipes.map((recipe, index) => {
+
+        {this.props.isInPantry && allRecipes.map((recipe, index) => {
+          let green = idArray.includes(recipe.id)
           console.log(`look at me ${recipe.id}`)
           return (
             <div className="recipe_button_container">
 
-              <li onClick={() => this.props.selectedRecipe(day, recipe.title, recipe.id)} key={index}>{recipe.title}</li>
+              <li style={green ? { color: "green" } : { color: "red" }} onClick={() => this.props.selectedRecipe(day, recipe.title, recipe.id)} key={index}>{recipe.title}</li>
             </div>
           )
 
         })}
 
         <div className="buttons_container">
-          <button  onClick={() => this.props.onDateClick()}>go back</button>
+          <button onClick={() => this.props.onDateClick()}>go back</button>
         </div>
       </>
     )

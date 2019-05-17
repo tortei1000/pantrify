@@ -155,6 +155,7 @@ class Calendar extends React.Component {
             selectedRecipe={this.selectedRecipe}
             day={this.state.selectedDate}
             onDateClick={this.onDateClick}
+            isInPantry={this.state.isInPantry}
           />
         ) : rows}
         <PrintThisComponent />
