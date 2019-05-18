@@ -35,7 +35,7 @@ class Step1 extends Component {
           <p>Recipe Title:</p>
           <input name="title" onChange={this.handleChange} />
           <p>Cooking Directions:</p>
-          <textarea name="directions" onChange={this.handleChange} />
+          <textarea name="instructions" onChange={this.handleChange} />
           
             <AmazonS3 />
           
