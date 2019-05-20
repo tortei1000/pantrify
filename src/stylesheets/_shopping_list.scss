@@ -98,17 +98,19 @@
 
   @media(min-width:1000px){
     .buttons_container{
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+      padding-right: 10em;
+      
       button{ 
         font-size: 14px;
       }
       
     }
     .shopping_container{
-      max-width: 900px;
-      margin-left: auto;
-      margin-right: auto;
+      padding-left: 10em;
+      align-items: center;
+      
+    }
+    .quantity_unit_container{
+      padding: 5em;
     }
   }
