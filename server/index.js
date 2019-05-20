@@ -10,6 +10,7 @@ const aws = require('aws-sdk');
 const dateFns = require('date-fns')
 const cron = require('node-cron')
 const fs = require('fs')
+const path = require('path')
 
 
 const { PHONENUMBER, AUTHTOKEN, ACCOUNTSID, SERVER_PORT, SESSION_SECRET, CONNECTION_STRING, S3_BUCKET, AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY } = process.env
@@ -17,6 +18,8 @@ const { PHONENUMBER, AUTHTOKEN, ACCOUNTSID, SERVER_PORT, SESSION_SECRET, CONNECT
 const client = require('twilio')(ACCOUNTSID, AUTHTOKEN);
 
 app.use(express.json())
+
+app.use( express.static( `${__dirname}/../build` ) );
 
 app.use(session({
   secret: SESSION_SECRET,
@@ -118,3 +121,7 @@ app.get('/api/calendar', Calendar_ctrl.getCalendarMeals)
 app.get('/api/calendar/:title', Calendar_ctrl.search)
 app.delete('/api/calendar/:id', Calendar_ctrl.delete)
 app.get('/api/pantryCheck/', Calendar_ctrl.pantryCheck)
+
+app.get('*', (req, res)=>{
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
