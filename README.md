@@ -1,4 +1,4 @@
-Pantrify is a meal planning, recipe collection web app.
+https://www.pantrify.us/ is a meal planning, recipe collection web app.
 
 The goal for this app is to allow users to create and save recipes to their personal profiles.  Allowing for editing, deletion of the recipes.  The app will also allow the user to plan his or her meals using the calendar provided.
 
