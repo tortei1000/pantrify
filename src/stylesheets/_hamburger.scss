@@ -57,9 +57,16 @@
     width: 90vw;
     box-sizing: unset;
     padding-bottom: 2em;
+    padding-right: 2em;
     
     
   }
 
   
+}
+
+@media(min-width:1400px){
+  .hamburger_container{
+    max-width: 1400px;
+  }
 }
