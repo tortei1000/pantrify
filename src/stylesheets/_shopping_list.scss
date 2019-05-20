@@ -1,25 +1,43 @@
 @import 'variable';
   
-  
+  .grid_container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr
+  }  
 
+  #shop_button{
+    font-size: 10px;
+    height: 40px;
+    margin-right: 5px;
+  }
+  
+  .quantity_unit_container{
+    grid-column: 2/3;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    margin-left: 2em;
+    
+    
+    .ingredient_quantity_container{
+      font-weight: 800;
+    }
+        
+    .ingredient_unit_container{
+      font-weight: 800;
+      margin-left: 0.5em;
+    }
+  }
   .shopping_container{
     display: flex;    
     justify-content: space-around;
     padding: 0.5em;
     font-weight: 800;
+    justify-content: left;
+    margin-left: 1.5em;
     
     .ingredient_name_container{
-     
-    }
-    .quantity_unit_container{
-      display: flex;
-      
-      
-          
-      .ingredient_unit_container{
-        
-        margin-left: 0.5em;
-      }
+     grid-column: 1/2;
     }
     
   }
@@ -28,6 +46,8 @@
     
     display: flex;
     justify-content: space-around;
+    grid-column: 3/4;
+    align-items: center;
     button{
       font-size: 14px;
       transition: 500ms;
@@ -36,8 +56,10 @@
       color: $primary-font-color;
       padding: 0.5em;
       font-weight: 600;
-      margin-top: 10px;
+      
       box-shadow: 1px 2px;
+      height: 40px;
+      
     }
     button:hover{
       background: $primary-font-color;

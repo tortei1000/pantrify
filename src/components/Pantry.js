@@ -46,18 +46,19 @@ class Pantry extends Component {
     const { ingredients } = this.state
     const list = ingredients.map((ingredient, index) => {
       return (
-        <>
+        <div className="grid_container">
           <div key={index} className="shopping_container">
             <p className="ingredient_name_container">{ingredient.name}</p>
-            <div className="quantity_unit_container">
-              <p className="ingredient_quantity_container">{ingredient.quantity}</p>
-              <p className="ingredient_unit_container">{ingredient.unit}</p>
-            </div>
           </div>
+          <div className="quantity_unit_container">
+            <p className="ingredient_quantity_container">{ingredient.quantity}</p>
+            <p className="ingredient_unit_container">{ingredient.unit}</p>
+          </div>
+
           <div className="buttons_container">
             <button onClick={() => { this.removeFromPantry(ingredient.id) }}>remove item</button>
           </div>
-        </>
+        </div>
       )
     })
     return (

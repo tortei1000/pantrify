@@ -23,7 +23,7 @@ class ShoppingList extends Component {
   }
   getIngredients = () => {
     axios.get('/api/ingredients').then((result) => {
-      
+
       this.setState({ ingredients: result.data })
     })
   }
@@ -33,7 +33,7 @@ class ShoppingList extends Component {
       console.log(res.status)
     })
     this.getIngredients()
-    
+
   }
 
   addToPantry = (id) => {
@@ -52,15 +52,15 @@ class ShoppingList extends Component {
         <div className="grid_container">
           <div className="shopping_container">
             <p className="ingredient_name_container">{ingredient.name}</p>
-            <div className="quantity_unit_container">
-              <p className="ingredient_quantity_container">{ingredient.quantity}</p>
-              <p className="ingredient_unit_container">{ingredient.unit}</p>
-            </div>
-
           </div>
+          <div className="quantity_unit_container">
+            <p className="ingredient_quantity_container">{ingredient.quantity}</p>
+            <p className="ingredient_unit_container">{ingredient.unit}</p>
+          </div>
+
           <div className="buttons_container">
-            <button onClick={() => { this.addToPantry(ingredient.id) }}>add to pantry</button>
-            <button onClick={() => { this.removeFromList(ingredient.id) }}>remove from list</button>
+            <button id="shop_button" onClick={() => { this.addToPantry(ingredient.id) }}>add to pantry</button>
+            <button id="shop_button" onClick={() => { this.removeFromList(ingredient.id) }}>remove from list</button>
           </div>
         </div>
       )
