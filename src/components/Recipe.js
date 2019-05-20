@@ -52,7 +52,7 @@ class Recipe extends Component {
               return (
                 <div className="ingredients_container">
                   <p className="ingredient_name_container" >{ingredient.name}</p>
-                  <div className="quantity_unit_container">
+                  <div className="quantity_unit_container_recipe">
                     <p className="ingredient_quantity_container" >{ingredient.quantity}</p>
                     <p className="ingredient_unit_container" >{ingredient.unit}</p>
                   </div>
