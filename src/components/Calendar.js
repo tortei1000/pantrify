@@ -181,7 +181,7 @@ class Calendar extends React.Component {
   pantryChecker = async() => {
     
     await axios.get('/api/pantryCheck').then((res)=>{
-      console.log(res.data)
+      
       this.setState({isInPantry:res.data})  
       
     })
@@ -189,7 +189,7 @@ class Calendar extends React.Component {
 
   selectedRecipe = (meal_day, recipe, recipe_id) => {
     
-     
+    console.log('here is the meal day', meal_day) 
     let planMeal = { meal_day, recipe, recipe_id }
     this.saveToDb(planMeal)
 

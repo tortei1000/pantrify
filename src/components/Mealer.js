@@ -58,7 +58,7 @@ class Mealer extends Component {
 
         {this.props.isInPantry && allRecipes.map((recipe, index) => {
           let green = idArray.includes(recipe.id)
-          console.log(`look at me ${recipe.id}`)
+          
           return (
             <div className="recipe_button_container">
 
