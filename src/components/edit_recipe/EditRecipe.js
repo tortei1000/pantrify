@@ -13,7 +13,7 @@ class EditRecipe extends Component {
     return (
       <div>
         <p className="create_edit_header">Edit the recipe</p>
-        <div className="buttons_container">
+        <div className="buttons_container_create_cancel">
         <Link to="/"><button onClick={()=>this.props.refreshState()}>cancel</button></Link>
         </div>
         <Switch>

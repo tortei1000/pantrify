@@ -65,7 +65,7 @@ class Step2 extends Component {
           <input name="unit" value={this.state.unit} onChange={this.handleChange} />
 
         </div>
-        <div className="buttons_container">
+        <div className="buttons_container_create">
           <button onClick={this.addIngredientsToState}>add ingredients</button>
           <button onClick={this.createRecipe}>Done</button>
         </div>

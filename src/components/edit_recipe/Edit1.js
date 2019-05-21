@@ -47,7 +47,7 @@ class Edit1 extends Component {
           <textarea name="instructions" onChange={this.handleChange} />
           
         </div>
-        <div className="buttons_container">
+        <div className="buttons_container_create">
 
           <Link to={`/editrecipe/edit2/${this.props.match.params.id}`}><button onClick={this.addRecipe}>next</button></Link>
         </div>

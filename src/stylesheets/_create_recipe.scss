@@ -1,5 +1,54 @@
 @import 'variable';
 
+.buttons_container_create{
+  display: flex;
+  justify-content: space-around;
+  grid-column: 3/4;
+  align-items: center;
+  button{
+    font-size: 12px;
+    transition: 500ms;
+    background: transparent;
+    border-radius: 3px;
+    color: $primary-font-color;
+    padding: 0.5em;
+    font-weight: 600;
+    
+    box-shadow: 1px 2px;
+    height: 40px;
+    
+  }
+  button:hover{
+    background: $primary-font-color;
+    color: white;
+  }
+}
+.buttons_container_create_cancel{
+  display: flex;
+  justify-content: space-around;
+  grid-column: 3/4;
+  align-items: center;
+  button{
+    font-size: 12px;
+    transition: 500ms;
+    background: transparent;
+    border-radius: 3px;
+    color: $primary-font-color;
+    padding: 0.5em;
+    font-weight: 600;
+    
+    box-shadow: 1px 2px;
+    height: 40px;
+    
+  }
+  button:hover{
+    background: $primary-font-color;
+    color: white;
+  }
+}
+
+
+
 .create_container{
   
   padding: 0.5em;

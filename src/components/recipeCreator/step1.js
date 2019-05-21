@@ -40,7 +40,7 @@ class Step1 extends Component {
             <AmazonS3 />
           
         </div>
-        <div  className="buttons_container">
+        <div  className="buttons_container_create">
 
           <Link to="/wizard/Step2"><button className="next_button" onClick={this.addRecipe}>next</button></Link>
         </div>
