@@ -46,7 +46,7 @@ class Recipe extends Component {
           <li className="instruction_container" key={index} style={{ listStyle: 'none' }}>
             <p className="subheader_container">Instructions:</p>
             {item.instructions}</li>
-          <li key={index} style={{ listStyle: 'none' }}>
+          <li className="no_float" key={index} style={{ listStyle: 'none' }}>
             <p className="subheader_container">Ingredients: </p>
             {this.state.ingredients.map((ingredient) => {
               return (
