@@ -65,17 +65,17 @@ class Edit2 extends Component {
         </div>
           {this.props.ingredients.map((ingredient) => {
             return (
-              <>
-                <div className="current_ingredients">
-                  <div className="ingredients_container">
+              <div className="grid_container">
+                
+                  <div className="shopping_container">
                     <p className="ingredient_name_container">{ingredient.name}</p>
                   </div>
                   <div className="quantity_unit_container">
                     <p className="ingredient_quantity_container">{ingredient.quantity}</p>
                     <p className="ingredient_unit_container">{ingredient.unit}</p>
                   </div>
-                </div>
-              </>)
+                
+              </div>)
           })}
         </div>
       
