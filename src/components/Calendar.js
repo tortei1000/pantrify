@@ -36,7 +36,7 @@ class Calendar extends React.Component {
   }
 
   resize() {
-    console.log(window.innerWidth)
+    
     if (window.innerWidth > 1000) {
       this.setState({ resizeScreen: true })
     } else { this.setState({ resizeScreen: false }) }

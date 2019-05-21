@@ -15,7 +15,7 @@ export default class ToggleColor extends Component {
 
   render() {
     let idArray = this.props.isInPantry.map((item)=>{return item.id})
-    console.log(idArray)
+    
     
     return (
       <>
