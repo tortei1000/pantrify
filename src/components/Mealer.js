@@ -37,7 +37,7 @@ class Mealer extends Component {
     const { allRecipes } = this.state
     const { day } = this.props
     let idArray = this.props.isInPantry.map((item) => { return item.id })
-
+    console.log('in mealer this is props.day', day)
 
     return (
       <>

@@ -101,7 +101,7 @@ class Calendar extends React.Component {
         formattedDate = dateFns.format(day, dateFormat);
         const cloneDay = day;
         let filter = this.state.meals.filter((day) => {
-
+          console.log('days at calendar render', day)
           return isSameDay(new Date(day.meal_day), (new Date(cloneDay)))
         })
 
